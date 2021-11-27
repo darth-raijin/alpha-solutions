@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AuthService {
     private AuthService(){}
 
-    public static String authenticateUser(String email, String password) {
+    public static boolean authenticateUser(String email, String password) {
         // TODO tjek user repository om email eksisterer, krydstjek password
-        return "Yes";
+        return true;
     }
 
 

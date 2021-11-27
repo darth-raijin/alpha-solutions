@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
@@ -22,12 +23,20 @@ public class AuthController {
     }
 
     @PostMapping ("/login")
-    public void login (@RequestParam MultiValueMap body) {
+    public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
 
-        // TODO send til AuthService
-        AuthService.authenticateUser(email, password);
+        if(AuthService.authenticateUser(email, password)) {
+            return "redirect:/";
+        }
+        
+        redirectAttrs.addAttribute("status", "fail");
+        return "redirect:/auth/login?status={status}";
+
+
+
+        
 
 
 
@@ -39,7 +48,7 @@ public class AuthController {
     }
 
     @PostMapping ("/register")
-    public void register (@RequestParam MultiValueMap body) {
+    public String register (@RequestParam MultiValueMap body) {
         String fullName = String.valueOf(body.get("fullName")).replace("[","").replace("]","");
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
@@ -47,6 +56,8 @@ public class AuthController {
         String city = String.valueOf(body.get("city")).replace("[","").replace("]","");
         String postalCode = String.valueOf(body.get("postalCode")).replace("[","").replace("]","");
         String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[","").replace("]","");
+
+        return "hehe";
     }
 
     @GetMapping("/signout")
