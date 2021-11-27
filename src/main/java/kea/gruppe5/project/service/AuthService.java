@@ -6,21 +6,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 public class AuthService {
-    @PostMapping ("/login")
-    public void login (@RequestParam String email,
-                       @RequestParam String password) {
+    private AuthService(){}
 
-    }
-
-    @PostMapping ("/register")
-    public void register (@RequestParam String name,
-                          @RequestParam String password) {
-
-    }
-
-    @PostMapping ("/signout")
-    public void signOut(){
-
+    public static String authenticateUser(String email, String password) {
+        // TODO tjek user repository om email eksisterer, krydstjek password
+        return "Yes";
     }
 
 
