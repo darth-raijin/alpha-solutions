@@ -16,7 +16,7 @@ public class AuthController {
     @GetMapping("/login")
     public String loginView() {
         System.out.println("LOGIN VIEW HIT");
-        return "brr/test";
+        return "auth/login";
     }
 
     @PostMapping ("/login")
@@ -27,7 +27,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerView() {
-        return "root";
+        return "auth/register";
     }
 
     @PostMapping ("/register")
@@ -38,12 +38,11 @@ public class AuthController {
 
     @GetMapping("/signout")
     public String signoutView() {
-        return "root";
-    }
+        // Get Request for at logge ud
 
-    @PostMapping ("/signout")
-    public void signOut(){
+        // TODO Session slettes bum bum fixet
 
+        return "auth/signout"; // Skal return en redirect til "/" ruten
     }
 
 
