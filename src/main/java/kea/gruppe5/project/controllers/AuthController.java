@@ -1,6 +1,7 @@
 package kea.gruppe5.project.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -20,9 +21,8 @@ public class AuthController {
     }
 
     @PostMapping ("/login")
-    public void login (@RequestParam String email,
-                       @RequestParam String password) {
-
+    public void login (@RequestParam MultiValueMap body) {
+        
     }
 
     @GetMapping("/register")
@@ -31,8 +31,7 @@ public class AuthController {
     }
 
     @PostMapping ("/register")
-    public void register (@RequestParam String name,
-                          @RequestParam String password) {
+    public void register (@RequestParam MultiValueMap body) {
 
     }
 
