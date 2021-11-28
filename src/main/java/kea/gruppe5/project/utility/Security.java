@@ -14,6 +14,22 @@ public class Security extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity security) throws Exception
     {
-     security.httpBasic().disable();
+        /*
+        * For at konfigurere rute tilladelser osv. bliver HttpSecurity sat vha. Spring Security dokumentationen
+        * https://spring.io/guides/gs/securing-web/
+        */
+        security
+        .authorizeRequests()
+            .antMatchers("/").permitAll()
+            .antMatchers("/projects/**").hasRole("user")
+            .anyRequest().authenticated()
+            .and()
+        .formLogin()
+            .loginPage("/auth/login")
+            .failureUrl("/auth/login?status=fail")
+            .permitAll()
+            .and()
+        .logout()
+            .permitAll();
     }
 }

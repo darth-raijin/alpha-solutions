@@ -26,20 +26,8 @@ public class AuthController {
     public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
-
-        if(AuthService.authenticateUser(email, password)) {
-            return "redirect:/";
-        }
-        
-        redirectAttrs.addAttribute("status", "fail");
-        return "redirect:/auth/login?status={status}";
-
-
-
-        
-
-
-
+   
+            return "";
     }
 
     @GetMapping("/register")
