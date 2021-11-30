@@ -17,8 +17,10 @@ public class UserRepository {
         // Database load alle brugere bla bla bla
     }
 
-    public void addUser(User user) {
+    public static User addUser(User user) {
+        // Opret bruger i database, tilføj personnelNumber til user objekt og returner
 
+        return user;
     }
 
     public static User getByEmail(String email) {

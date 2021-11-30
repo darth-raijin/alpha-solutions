@@ -19,10 +19,16 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 @RequestMapping("auth")
 public class AuthController {
 
+    public void wipeSession(HttpSession session) {
+
+    }
+
     @GetMapping("/login")
     public String loginView(HttpSession session) {
         if (session.getAttribute("email") != null) {
-            session.invalidate();
+                session.removeAttribute("personnelNumber");
+                session.removeAttribute("name");
+                session.removeAttribute("email");
         }
         return "auth/login";
     }
@@ -65,6 +71,8 @@ public class AuthController {
         String city = String.valueOf(body.get("city")).replace("[","").replace("]","");
         String postalCode = String.valueOf(body.get("postalCode")).replace("[","").replace("]","");
         String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[","").replace("]","");
+
+        
 
         return "hehe";
     }
