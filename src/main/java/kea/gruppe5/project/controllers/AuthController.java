@@ -73,9 +73,11 @@ public class AuthController {
     public String signoutView(HttpSession session) {
         // Get Request for at logge ud
 
-        session.invalidate();
-
-        return "/"; // Skal return en redirect til "/" ruten
+        session.removeAttribute("personnelNumber");
+        session.removeAttribute("name");
+        session.removeAttribute("email");
+        
+        return "root"; // Skal return en redirect til "/" ruten
     }
 
 

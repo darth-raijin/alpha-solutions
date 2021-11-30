@@ -5,10 +5,15 @@
         <h1>Alpha Solutions</h1>
       </a>
     </div>
-    <div class="navbar-end" th:if="${session.containsKey('email')}">
+    <div class="navbar-end" th:if="${session.name != null}">
       <div class="navbar-item">
         <a class="navbar-item" href="/projects">
           <button class="button is-info is-rounded">My Projects</button>
+        </a>
+      </div>
+      <div class="navbar-item">
+        <a class="navbar-item" href="/profile">
+          <button class="button is-info is-rounded" th:text="${session.name}">Sign out</button>
         </a>
       </div>
       <div class="navbar-item">
@@ -18,7 +23,7 @@
       </div>
     </div>
 
-    <div class="navbar-end" th:if="${session.containsKey('email') == null}">
+    <div class="navbar-end" th:if="${session.email == null}">
       <div class="navbar-item">
         <a class="navbar-item" href="/auth/register">
           <button class="button is-info is-rounded">REGISTER</button>
