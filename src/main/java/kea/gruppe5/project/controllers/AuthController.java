@@ -1,5 +1,7 @@
 package kea.gruppe5.project.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,10 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 public class AuthController {
 
     @GetMapping("/login")
-    public String loginView() {
-        System.out.println("LOGIN VIEW HIT");
+    public String loginView(HttpSession session) {
+        if (session.getAttribute("email") != null) {
+            session.invalidate();
+        }
         return "auth/login";
     }
 
@@ -27,9 +31,10 @@ public class AuthController {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
         
-        if(AuthService.authenticateUser(email, password)) {
+        if(AuthService.authenticateUser(email, password) != null) {
             // TODO Session skal tilføje user model
         }
+        
         redirectAttrs.addAttribute("status", "fail");
         return "redirect:/auth/login?status={status}";
     }
