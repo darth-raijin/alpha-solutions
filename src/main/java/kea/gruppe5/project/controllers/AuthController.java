@@ -28,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping ("/login")
-    public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
+    public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
 
@@ -38,7 +38,12 @@ public class AuthController {
             System.out.println("User successfully authenticated!");
             // Session skal indeholde PersonnelNumber, Navn og Email
             System.out.println(user.getEmail() + " " + user.getName());
+            
+            session.setAttribute("personnelNumber", user.getPersonnelNumber());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("name", user.getName());
 
+            System.out.println(session.getAttributeNames());
             return "redirect:/";
         }
 
@@ -65,12 +70,12 @@ public class AuthController {
     }
 
     @GetMapping("/signout")
-    public String signoutView() {
+    public String signoutView(HttpSession session) {
         // Get Request for at logge ud
 
-        // TODO Session slettes bum bum fixet
+        session.invalidate();
 
-        return "auth/signout"; // Skal return en redirect til "/" ruten
+        return "/"; // Skal return en redirect til "/" ruten
     }
 
 
