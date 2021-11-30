@@ -9,6 +9,7 @@
             <h2 class="subtitle">
               Submit your email address and password to log in!
             </h2>
+            <button class="button is-link" onClick="dataFill()">Fill with data </button>
           </section>
         <div class="columns is-centered">
             <div class="column is-three-fifths ">
@@ -16,14 +17,14 @@
                     <div class="field">
                       <label class="label">Email</label>
                       <div class="control">
-                        <input class="input" name="email" type="email" placeholder="e.g. alex@example.com">
+                        <input class="input" id="email" name="email" type="email" placeholder="Enter your email address">
                       </div>
                     </div>
                   
                     <div class="field">
                       <label class="label">Password</label>
                       <div class="control">
-                        <input class="input" name="password" type="password" placeholder="********">
+                        <input class="input" id="password" name="password" type="password" placeholder="Enter your password"
                       </div>
                     </div>
                   
@@ -31,6 +32,8 @@
                   </form>
             </div>
         </div>
+        <footer th:include="fragments/footer :: footer">
+        </footer>
 
         <script>
           // https://flaviocopes.com/urlsearchparams/
@@ -43,9 +46,13 @@
               alert("Email or password is wrong!");
             }
           }
+
+          function dataFill() {
+                document.getElementById("email").value = "test@vontest.com"
+                document.getElementById("password").value = "brr"
+                document.getElementById("passwordLabel").innerHTML = "Password - generated password is: 1234"
+            }
         </script>
-        <footer th:include="fragments/footer :: footer">
-        </footer>
     </body>
 
 </html>

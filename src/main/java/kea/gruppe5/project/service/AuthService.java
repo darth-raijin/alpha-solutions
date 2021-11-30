@@ -13,9 +13,7 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 
 public class AuthService {
-    private String testEmail = "email@test.com";
-    private String testPassword = "password";
-    private boolean testing = true;
+    private static boolean testing = true;
 
     private AuthService(){
 
@@ -23,17 +21,22 @@ public class AuthService {
 
 
     public static User authenticateUser(String email, String password) {
+        if(testing == true){
+            User currentUser = UserRepository.getByEmail("test@vontest.com");
+            return currentUser;
+        }
+
         // Benytter sig af Database for at validere for at undgå lagring af password i systemet
         Map<String, String> userFetch = DatabaseConnectionManager.getUserByEmail(email);
 
         if (password == userFetch.get("password")) {
             // Brugerens login er gyldigt
             User currentUser = UserRepository.getByEmail(email);
-            if (currentUser == null) {
-                // Fetch by database and load repository
-            }
 
-            
+            if (currentUser == null) {
+                // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt tilhængende data
+            }
+            return currentUser;
         }
 
         return null;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kea.gruppe5.project.models.User;
 import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
@@ -30,11 +31,17 @@ public class AuthController {
     public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
+
+        User user = AuthService.authenticateUser(email, password);
         
-        if(AuthService.authenticateUser(email, password) != null) {
-            // TODO Session skal tilføje user model
+        if(user != null) {
+            System.out.println("User successfully authenticated!");
+            // Session skal indeholde PersonnelNumber, Navn og Email
+            System.out.println(user.getEmail() + " " + user.getName());
+
+            return "redirect:/";
         }
-        
+
         redirectAttrs.addAttribute("status", "fail");
         return "redirect:/auth/login?status={status}";
     }
