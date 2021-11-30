@@ -2,7 +2,7 @@
 <html>
     <head th:include="fragments/header :: header">
     </head>
-    <body>
+    <body onload="checkError()">
         <div th:include="fragments/navbar :: navbar"></div>
         <section class="section">
             <h1 class="title">Login</h1>
@@ -32,7 +32,20 @@
             </div>
         </div>
 
+        <script>
+          // https://flaviocopes.com/urlsearchparams/
+          // Øverstående er blevet brugt til at få fat på query parametre
+          function checkError() {
+            const queryParameter = new URLSearchParams(window.location.search)
+
+            if (queryParameter.has("status")) {
+              console.log("Login request rejected!");
+              alert("Email or password is wrong!");
+            }
+          }
+        </script>
+        <footer th:include="fragments/footer :: footer">
+        </footer>
     </body>
-    <footer th:include="fragments/footer :: footer">
-    </footer>
+
 </html>

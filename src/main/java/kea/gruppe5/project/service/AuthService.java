@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 public class AuthService {
+    
     private AuthService(){}
 
     public static boolean authenticateUser(String email, String password) {

@@ -22,9 +22,9 @@ public class DatabaseConnectionManager {
         try(InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(stream);
-            url = properties.getProperty("db.url");
-            username = properties.getProperty("db.username");
-            password = properties.getProperty("db.password");
+            url = properties.getProperty("spring.datasource.url");
+            username = properties.getProperty("spring.datasource.username");
+            password = properties.getProperty("spring.datasource.password");
             System.out.println("Password: " + password +  " Username: " + username + " Url: " + url);
             conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected correctly!");

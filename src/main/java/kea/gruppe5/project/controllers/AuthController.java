@@ -26,8 +26,12 @@ public class AuthController {
     public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
-   
-            return "";
+        
+        if(AuthService.authenticateUser(email, password)) {
+            // TODO Session skal tilføje user model
+        }
+        redirectAttrs.addAttribute("status", "fail");
+        return "redirect:/auth/login?status={status}";
     }
 
     @GetMapping("/register")
