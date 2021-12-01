@@ -26,5 +26,9 @@ public class TestController {
         DatabaseConnectionManager.getConnection();
         return "root";
     }
+    @GetMapping("/create")
+    public String create(){
+        return "create";
+    }
 
 }
