@@ -2,13 +2,14 @@
 <html>
     <head th:include="fragments/header :: header">
     </head>
-    <body>
+    <body onload="checkError()">
         <div th:include="fragments/navbar :: navbar"></div>
         <section class="section">
             <h1 class="title">Login</h1>
             <h2 class="subtitle">
               Submit your email address and password to log in!
             </h2>
+            <button class="button is-link" onClick="dataFill()">Fill with test account data</button>
           </section>
         <div class="columns is-centered">
             <div class="column is-three-fifths ">
@@ -16,14 +17,14 @@
                     <div class="field">
                       <label class="label">Email</label>
                       <div class="control">
-                        <input class="input" name="email" type="email" placeholder="e.g. alex@example.com">
+                        <input class="input" id="email" name="email" type="email" placeholder="Enter your email address">
                       </div>
                     </div>
                   
                     <div class="field">
                       <label class="label">Password</label>
                       <div class="control">
-                        <input class="input" name="password" type="password" placeholder="********">
+                        <input class="input" id="password" name="password" type="password" placeholder="Enter your password"
                       </div>
                     </div>
                   
@@ -31,8 +32,27 @@
                   </form>
             </div>
         </div>
+        <footer th:include="fragments/footer :: footer">
+        </footer>
 
+        <script>
+          // https://flaviocopes.com/urlsearchparams/
+          // Øverstående er blevet brugt til at få fat på query parametre
+          function checkError() {
+            const queryParameter = new URLSearchParams(window.location.search)
+
+            if (queryParameter.has("status")) {
+              console.log("Login request rejected!");
+              alert("Email or password is wrong!");
+            }
+          }
+
+          function dataFill() {
+                document.getElementById("email").value = "test@vontest.com"
+                document.getElementById("password").value = "brr"
+                document.getElementById("passwordLabel").innerHTML = "Password - generated password is: 1234"
+            }
+        </script>
     </body>
-    <footer th:include="fragments/footer :: footer">
-    </footer>
+
 </html>

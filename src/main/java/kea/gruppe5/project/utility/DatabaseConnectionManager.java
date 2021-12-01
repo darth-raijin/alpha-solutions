@@ -4,6 +4,7 @@ import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
@@ -22,9 +23,9 @@ public class DatabaseConnectionManager {
         try(InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(stream);
-            url = properties.getProperty("db.url");
-            username = properties.getProperty("db.username");
-            password = properties.getProperty("db.password");
+            url = properties.getProperty("spring.datasource.url");
+            username = properties.getProperty("spring.datasource.username");
+            password = properties.getProperty("spring.datasource.password");
             System.out.println("Password: " + password +  " Username: " + username + " Url: " + url);
             conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected correctly!");
@@ -34,4 +35,11 @@ public class DatabaseConnectionManager {
         }
         return conn;
     }
+
+    public static Map<String, String> getUserByEmail(String email) {
+
+
+        return null;
+    }
+
 }
