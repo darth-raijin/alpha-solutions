@@ -38,7 +38,7 @@ public class AuthController {
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
 
-        User user = AuthService.authenticateUser(email, password);
+        User user = AuthService.authenticateUser(email, password, session);
         
         if(user != null) {
             System.out.println("User successfully authenticated!");

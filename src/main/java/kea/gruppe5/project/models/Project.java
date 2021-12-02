@@ -1,23 +1,25 @@
 package kea.gruppe5.project.models;
 
+import java.util.ArrayList;
+
 public class Project {
-    String managerID;
+    String personnelNumber;
     double totalTime;
     String name;
     String description;
-    String workersList;
-    String subprojectList;
+    ArrayList<User> workersList;
+    ArrayList<Subproject> subprojectList;
     Boolean isUpdated;
 
-    public Project(String managerID,
+    public Project(String personnelNumber,
                    double totalTime,
                    String name,
                    String description,
-                   String workersList,
-                   String subprojectList,
+                   ArrayList<User> workersList,
+                   ArrayList<Subproject> subprojectList,
                    Boolean isUpdated,
                    int id) {
-        this.managerID = managerID;
+        this.personnelNumber = personnelNumber;
         this.totalTime = totalTime;
         this.name = name;
         this.description = description;
@@ -27,13 +29,13 @@ public class Project {
         this.id = id;
     }
 
-    public String getManagerID() {
-        return managerID;
+    public String getPersonnelNumber(){
+        return personnelNumber;
     }
-
-    public void setManagerID(String managerID) {
-        this.managerID = managerID;
+    public void setPersonnelNumber(){
+        this.personnelNumber = personnelNumber;
     }
+    
 
     public double getTotalTime() {
         return totalTime;
@@ -59,19 +61,19 @@ public class Project {
         this.description = description;
     }
 
-    public String getWorkersList() {
+    public ArrayList<User> getWorkersList() {
         return workersList;
     }
 
-    public void setWorkersList(String workersList) {
+    public void setWorkersList(ArrayList<User> workersList) {
         this.workersList = workersList;
     }
 
-    public String getSubprojectList() {
+    public ArrayList<Subproject> getSubprojectList() {
         return subprojectList;
     }
 
-    public void setSubprojectList(String subprojectList) {
+    public void setSubprojectList(ArrayList<Subproject> subprojectList) {
         this.subprojectList = subprojectList;
     }
 
