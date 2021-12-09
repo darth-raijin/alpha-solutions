@@ -44,4 +44,17 @@ public class SubprojectRepository {
         }
         return null;
     }
+
+    public static boolean updateSubproject(String name, String description, int id) {
+        // UpDATE I DATABASE MUY IMPORTANT
+        for (Subproject subproject : subprojectList) {
+            if (subproject.getId() == id) {
+                subproject.setName(name);
+                subproject.setDescription(description);
+                System.out.println("Subproject " + id + " is updated");
+                return true;
+            }
+        }
+        return false;
+    }
 } 

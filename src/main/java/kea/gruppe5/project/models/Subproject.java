@@ -1,20 +1,20 @@
 package kea.gruppe5.project.models;
 
 public class Subproject {
-    double subprojectTime;
+    double totalTime;
     String name;
     String description;
     int projectId;
     boolean isCompleted;
     int id;
 
-    public Subproject(double subprojectTime,
+    public Subproject(double totalTime,
                       String name,
                       String description,
                       int projectId,
                       boolean isCompleted,
                       int id) {
-        this.subprojectTime = subprojectTime;
+        this.totalTime = totalTime;
         this.name = name;
         this.description = description;
         this.projectId = projectId;
@@ -24,11 +24,11 @@ public class Subproject {
 
 
     public double getSubprojectTime() {
-        return subprojectTime;
+        return totalTime;
     }
 
     public void setSubprojectTime(double subprojectTime) {
-        this.subprojectTime = subprojectTime;
+        this.totalTime = subprojectTime;
     }
 
     public String getName() {

@@ -29,4 +29,8 @@ public class ProjectService {
         return ProjectRepository.createProject(name, description, personnelNumber);
     }
 
+    public static boolean updateProject(String name, String description, int id) {
+        return ProjectRepository.updateProject(name, description, id);
+    }
+
 }

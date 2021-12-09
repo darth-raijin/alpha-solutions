@@ -19,6 +19,7 @@ public class TaskRepository {
                 tasks.add(task);
             }
         }
+        System.out.println("Found " + tasks.size() + " tasks in subproj: " + parentId);
         return tasks;
     }
     

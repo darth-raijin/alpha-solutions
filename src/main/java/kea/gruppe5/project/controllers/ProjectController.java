@@ -35,6 +35,9 @@ public class ProjectController {
         return "project/myprojects";
     }
 
+    /*
+            PROJECTS
+    */
     @GetMapping("projects") 
     public String viewProject(Model model, @RequestParam(value = "id", required = true) String id) {
         // Tilføj modelattribute med Subprojects
@@ -45,8 +48,25 @@ public class ProjectController {
     }
 
     @GetMapping("updateproject")
-    public String viewUpdateProject(@RequestParam(value = "id", required = true) String id) {
+    public String viewUpdateProject(Model model, @RequestParam(value = "id", required = true) String id) {
+        model.addAttribute("project", ProjectService.getProjectById(id));
         return "project/updateproject";
+    }
+
+    @PostMapping("updateProject")
+    public String updateProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+
+        boolean updated = ProjectService.updateProject(name, description, Integer.parseInt(id));
+        
+        if (updated) {
+            redirectAttrs.addAttribute("id", id);
+            return "redirect:/myprojects/project?id={id}";
+        }
+
+        return "redirect:/myprojects/updateproject?status=fail";
+    }
     }
 
     @GetMapping("createproject") 
@@ -71,13 +91,17 @@ public class ProjectController {
         return "redirect:/myprojects/createproject?status=fail";
     }
 
-    @GetMapping("subprojects") 
+        /*
+            SUBPROJECTS
+         */
+
+    @GetMapping("subproject") 
     public String viewSubproject(Model model, @RequestParam(value = "id", required = true) String id) {
         // Used for viewing a subproject as a 'parent', with associated tasks in cards
         model.addAttribute("subproject", SubProjectService.getSubProjectById(Integer.parseInt(id)));
         model.addAttribute("tasks", TaskService.getTasksByParentId(Integer.parseInt(id)));
         
-        return "root";
+        return "project/viewsubproject";
     }
 
     @PostMapping("createsubproject") 
@@ -98,11 +122,29 @@ public class ProjectController {
     }
 
     @GetMapping("updatesubproject")
-    public String viewUpdateSubproject(@RequestParam(value = "id", required = true) String id) {
+    public String viewUpdateSubproject(Model model, @RequestParam(value = "id", required = true) String id) {
+        model.addAttribute("subproject", SubProjectService.getSubProjectById(Integer.parseInt(id)));
         return "project/updatesubproject";
     }
 
+    @PostMapping("updatesubproject")
+    public String updateSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
 
+        boolean updated = SubProjectService.updateSubProject(name, description, Integer.parseInt(id));
+
+        if (updated) {
+            redirectAttrs.addAttribute("id", id);
+            return "redirect:/myprojects/subproject?id={id}";
+        }
+
+        return "redirect:/myprojects/updatesubproject?status=fail";
+    }
+
+    /*
+            TASKS
+    */
 
     @GetMapping("tasks") 
     public String viewTasks(Model model, @RequestParam(value = "id", required = true) String id) {
@@ -117,6 +159,10 @@ public class ProjectController {
 
         return "root";
     }
+
+        /*
+            SUBTASKS
+         */
 
     @GetMapping("viewSubtasks") 
     public String viewSubtasks(Model model, @RequestParam(value = "id", required = true) String id) {

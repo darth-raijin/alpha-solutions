@@ -31,4 +31,8 @@ public class SubProjectService {
     public static Subproject getSubProjectById(int subprojectID) {
         return SubprojectRepository.getSubprojectById(subprojectID);
     }
+
+    public static boolean updateSubProject(String name, String description, int id) {
+        return SubprojectRepository.updateSubproject(name, description, id);
+    }
 }

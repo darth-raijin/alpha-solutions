@@ -50,6 +50,19 @@ public class ProjectRepository {
         // IF NOT -1
 
     }
+
+    public static boolean updateProject(String name, String description, int id) {
+        for (Project project : projectRepository) {
+            if (project.getId() == id) {
+                project.setName(name);
+                project.setDescription(description);
+                System.out.println("Project successfully updated - id: " + project.getId());
+                return true;
+
+            }
+        }
+        return false;
+    }
     
 }
 
