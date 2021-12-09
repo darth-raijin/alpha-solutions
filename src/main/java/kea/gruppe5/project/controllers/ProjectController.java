@@ -43,6 +43,29 @@ public class ProjectController {
         return "project/viewproject";
     }
 
+
+    @GetMapping("createproject") 
+    public String createProjectView() {
+        return "project/createproject";
+    }
+
+    @PostMapping("createproject")
+    public String createProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        String personnelNumber = (String) session.getAttribute("personnelNumber");
+
+        // Hvis en model bliver returneret fra ProjectService, bliver den brugt til redirect
+        int createdProjectId = ProjectService.createProject(name, description, personnelNumber);
+
+        if (createdProjectId >= 0) {
+            redirectAttrs.addAttribute("id", createdProjectId);
+            return "redirect:/myprojects/projects?id={id}";
+        }
+        // Handle fail aka hvis createdProjectId er -1
+        return "redirect:/myprojects/createproject?status=fail";
+    }
+
     @GetMapping("subprojects") 
     public String viewSubproject(Model model, @RequestParam(value = "id", required = true) String id) {
         
@@ -51,9 +74,8 @@ public class ProjectController {
     }
 
     @GetMapping("createsubproject") 
-    public String createSubproject(Model model, @RequestParam(value = "id", required = true) String id) {
+    public String createSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
         
-        System.out.println("ID: " + id);
         return "root";
     }
 
@@ -64,10 +86,22 @@ public class ProjectController {
         return "root";
     }
 
+    @GetMapping("createtask") 
+    public String createTask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
+        
+
+        return "root";
+    }
+
     @GetMapping("viewSubtasks") 
     public String viewSubtasks(Model model, @RequestParam(value = "id", required = true) String id) {
         
-        System.out.println("ID: " + id);
+        return "root";
+    }
+
+    @GetMapping("createSubtask") 
+    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
+        
         return "root";
     }
 }

@@ -33,6 +33,20 @@ public class ProjectRepository {
         }
         return null;
     }
+
+    public static int createProject(String name, String description, String personnelNumber) {
+        System.out.println("Attempting to create project " + name + " by user " + personnelNumber);
+        // TODO OPRET FØRST I DATABASE 
+
+        // IF GUCCI OPRET I REPOSITORY
+        Project project = new Project(personnelNumber, 2.5, name, description, null, null, false, projectRepository.size() + 1);
+
+        // IF ALSO GUCCI RETURN PROJEECT ID
+
+        // IF NOT -1
+
+        return -1;
+    }
     
 }
 

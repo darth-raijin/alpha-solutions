@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head th:include="fragments/header :: header">
+</head>
+<body onLoad="checkError()">
+<div th:include="fragments/navbar :: navbar"></div>
+
+<main class="container content box">
+
+    <h1 class="title"> Opret et projekt </h1>
+    <form method="post" action="#">
+        <div class="field">
+            <label class="label" for="name"> Navn</label>
+            <input type="text" name="name" id="name" class="input" placeholder= "Enter project name" required>
+        </div>
+        <div class="field">
+            <label class="label" for="description"> Description</label>
+            <input type="text" name="description" id="description" class="input" placeholder= "Enter description" required>
+        </div>
+        <button class="button is-primary">Create</button>
+        
+    </form>
+</main>
+<script>
+    // https://flaviocopes.com/urlsearchparams/
+    // Øverstående er blevet brugt til at få fat på query parametre
+    function checkError() {
+      const queryParameter = new URLSearchParams(window.location.search)
+
+      if (queryParameter.has("status")) {
+        console.log("Login request rejected!");
+        alert("Email or password is wrong!");
+      }
+    }
+
+
+  </script>
+</body>
+<footer th:include="fragments/footer :: footer">
+</footer>
+</html>
