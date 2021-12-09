@@ -67,7 +67,7 @@ public class ProjectController {
 
         return "redirect:/myprojects/updateproject?status=fail";
     }
-    }
+    
 
     @GetMapping("createproject") 
     public String createProjectView() {
