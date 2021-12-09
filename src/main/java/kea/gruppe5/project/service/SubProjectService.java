@@ -27,4 +27,8 @@ public class SubProjectService {
 
         return createdSub;
     }
+
+    public static Subproject getSubProjectById(int subprojectID) {
+        return SubprojectRepository.getSubprojectById(subprojectID);
+    }
 }

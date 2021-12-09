@@ -35,4 +35,13 @@ public class SubprojectRepository {
 
         return newSubproject.getId();
     }
+
+    public static Subproject getSubprojectById(int subprojectID) {
+        for (Subproject subproject : subprojectList) {
+            if (subproject.getId() == subprojectID) {
+                return subproject;
+            }
+        }
+        return null;
+    }
 } 

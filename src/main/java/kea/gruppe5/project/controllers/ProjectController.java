@@ -20,6 +20,7 @@ import kea.gruppe5.project.repository.SubprojectRepository;
 import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.service.ProjectService;
 import kea.gruppe5.project.service.SubProjectService;
+import kea.gruppe5.project.service.TaskService;
 
 @Controller
 @RequestMapping("myprojects")
@@ -43,6 +44,10 @@ public class ProjectController {
         return "project/viewproject";
     }
 
+    @GetMapping("updateproject")
+    public String viewUpdateProject(@RequestParam(value = "id", required = true) String id) {
+        return "project/updateproject";
+    }
 
     @GetMapping("createproject") 
     public String createProjectView() {
@@ -68,19 +73,36 @@ public class ProjectController {
 
     @GetMapping("subprojects") 
     public String viewSubproject(Model model, @RequestParam(value = "id", required = true) String id) {
+        // Used for viewing a subproject as a 'parent', with associated tasks in cards
+        model.addAttribute("subproject", SubProjectService.getSubProjectById(Integer.parseInt(id)));
+        model.addAttribute("tasks", TaskService.getTasksByParentId(Integer.parseInt(id)));
         
-        System.out.println("ID: " + id);
         return "root";
     }
 
-    @GetMapping("createsubproject") 
+    @PostMapping("createsubproject") 
     public String createSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        // Det ID der bliver modtaget er ID for ejeren. I dette tilfælde hvilket projekt det hører under
+        
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        
+        int creationResult = SubProjectService.createSubproject(name, description, id);
 
-        SubProjectService.createSubproject(name, description, id);
-        return "project/createsubproject";
+        if (creationResult >= 0) {
+            redirectAttrs.addAttribute("id", creationResult);
+            return "redirect:/myprojects/subprojects?id={id}";
+        }
+        
+        return "redirect:/myprojects/createsubproject?status=fail";
     }
+
+    @GetMapping("updatesubproject")
+    public String viewUpdateSubproject(@RequestParam(value = "id", required = true) String id) {
+        return "project/updatesubproject";
+    }
+
+
 
     @GetMapping("tasks") 
     public String viewTasks(Model model, @RequestParam(value = "id", required = true) String id) {
