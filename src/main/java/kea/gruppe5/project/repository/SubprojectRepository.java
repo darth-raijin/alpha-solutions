@@ -10,9 +10,7 @@ public class SubprojectRepository {
     public static void loadSubprojects() {
         Subproject test = new Subproject(0, "ahla name", "description go brr", 1, false, 0);
         subprojectList.add(test);
-        subprojectList.add(test);
 
-        subprojectList.add(test);
     }
 
     public static ArrayList<Subproject> getSubprojectsByParentId(int parentId) {
@@ -22,7 +20,7 @@ public class SubprojectRepository {
                 result.add(subproject);
             }
         }
-        System.out.println("Found: " + result.size());
+        System.out.println("Found subprojects by parentid: " + result.size());
         return result;
     }
 

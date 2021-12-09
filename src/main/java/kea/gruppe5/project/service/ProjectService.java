@@ -40,6 +40,7 @@ public class ProjectService {
 
     public static void calculateTime(int projectId) {
         double time = SubProjectService.getTotalTime(projectId);
+        System.out.println("Subproject total time: " + time);
         // Gets passed the sum of time from SubProjects
         ProjectRepository.calculateTime(projectId, time);
     }
