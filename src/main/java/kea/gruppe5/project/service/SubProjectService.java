@@ -35,4 +35,22 @@ public class SubProjectService {
     public static boolean updateSubProject(String name, String description, int id) {
         return SubprojectRepository.updateSubproject(name, description, id);
     }
+
+    public static double getTotalTime(int subProjectId) {
+        double totalTime = 0;
+        totalTime += TaskService.getTotalTime(subProjectId);
+        totalTime += SubtaskService.getTotalTime(subProjectId);
+
+        System.out.println("Subproject Id: " + subProjectId + " takes " + totalTime);
+
+        SubprojectRepository.updateTime(subProjectId, totalTime);
+
+        return totalTime;
+    }
+
+    public static int deleteSubProject(int subID) {
+        SubprojectRepository.deleteSubproject(subID);
+        TaskService.removeOwnedTasks(subID);
+        return SubprojectRepository.deleteSubproject(subID);
+    }
 }

@@ -7,6 +7,7 @@ public class Task {
     int subProjectId;
     int id;
     boolean isCompleted;
+    int projectId;
 
     public Task(double taskTime,
                 String name,
@@ -21,6 +22,11 @@ public class Task {
         this.subProjectId = subProjectId;
         this.id = id;
         this.isCompleted = isCompleted;
+        this.projectId = projectId;
+    }
+
+    public int getProjectId() {
+        return projectId;
     }
 
     public double getTaskTime() {

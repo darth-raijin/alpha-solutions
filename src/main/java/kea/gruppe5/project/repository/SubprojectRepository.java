@@ -57,4 +57,22 @@ public class SubprojectRepository {
         }
         return false;
     }
+
+    public static int deleteSubproject(int subID) {
+        for (Subproject subproject : subprojectList) {
+            if (subproject.getId() == subID) {
+                subprojectList.remove(subproject);
+                return subproject.getProjectId();
+            }
+        }
+        return -1;
+    }
+
+    public static void updateTime(int subProjectId, double totalTime) {
+        for (Subproject subproject : subprojectList) {
+            if (subproject.getId() == subProjectId) {
+                subproject.setSubprojectTime(totalTime);
+            }
+        }
+    }
 } 

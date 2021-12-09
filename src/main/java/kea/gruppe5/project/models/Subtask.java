@@ -7,23 +7,29 @@ public class Subtask {
     int id;
     int taskId;
     boolean isCompleted;
+    int subProjectId;
 
     public Subtask(double time,
                    String name,
                    String description,
                    int id,
                    int taskId,
-                   boolean isCompleted) {
+                   boolean isCompleted, int subProjectId) {
         this.time = time;
         this.name = name;
         this.description = description;
         this.id = id;
         this.taskId = taskId;
         this.isCompleted = isCompleted;
+        this.subProjectId = subProjectId;
     }
 
     public double getTime() {
         return time;
+    }
+
+    public int getSubProjectId() {
+        return subProjectId;
     }
 
     public void setTime(double time) {

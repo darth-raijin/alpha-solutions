@@ -9,22 +9,16 @@ import kea.gruppe5.project.repository.TaskRepository;
 import java.util.ArrayList;
 
 public class TaskService {
-    @PostMapping ("/updatetask")
-    public void updateTask (@RequestParam String name,
-                            @RequestParam String description,
-                            @RequestParam ArrayList<Integer> assignedWorkers,
-                            @RequestParam double time) {
 
-    }
-    @PostMapping ("/createtask")
-    public void createTask (@RequestParam String name,
-                            @RequestParam String description,
-                            @RequestParam ArrayList<Integer> assignedWorkers,
-                            @RequestParam double time) {
-
-    }
     public static ArrayList<Task> getTasksByParentId(int parentId) {
         return TaskRepository.getTasksByParentId(parentId);
 
+    }
+    public static void removeOwnedTasks(int subID) {
+        TaskRepository.removeOwnedTasks(subID);
+        SubtaskService.removeOwnedSubTasks(subID);
+    }
+    public static double getTotalTime(int subProjectId) {
+        return TaskRepository.getTotalTime(subProjectId);
     }
 }
