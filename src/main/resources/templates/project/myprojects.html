@@ -10,22 +10,20 @@
 
 
 <div>
-    <section class="section" th:each="project : ${projects}">
+    <section class="section">
 
-        <h1 class="title" th:text = "${project.name}">
+        <h1 class="title" >
 
-            Project Name</h1>
+            My Projects</h1>
 
-        <h2 class="subtitle" th:text = "${project.description}">
+        <h2 class="subtitle">
 
-            Project Description
-
-        </h2>
-        <h2 class="subtitle" th:text = "'Estimated time: ' + ${project.totalTime}">
-
-            Estimated Time
+            Explore and administrate your projects, or create a new one!
 
         </h2>
+        <button class="button">
+            Create new project
+        </button>
     </section>
 </div>
 </div>

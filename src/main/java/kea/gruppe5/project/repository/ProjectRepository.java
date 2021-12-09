@@ -23,6 +23,16 @@ public class ProjectRepository {
         System.out.println("User has " + result.size() + " projects");
         return result;
     }
+
+    public static Project getProjectById(String projectid) {
+        for (Project project : projectRepository) {
+            if (Integer.parseInt(projectid) == project.getId()) {
+                System.out.println("Searching for project " + projectid + " found!");
+                return project;
+            }
+        }
+        return null;
+    }
     
 }
 

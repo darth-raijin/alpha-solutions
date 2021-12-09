@@ -18,9 +18,10 @@ public class ProjectService {
         return projects;
     }
 
-    public static ArrayList<Subproject> getSubprojectByParentId(int parentId) {
-        ArrayList<Subproject> subprojects = SubprojectRepository.getSubprojectByParentId(parentId);
-
-        return subprojects;
+    public static Project getProjectById(String projectid) {
+        Project p = ProjectRepository.getProjectById(projectid);
+        System.out.println("Found project with id: " + p);
+        return p;
     }
+
 }

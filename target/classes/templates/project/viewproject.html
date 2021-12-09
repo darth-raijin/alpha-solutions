@@ -10,40 +10,39 @@
 
 
 <div>
-    <section class="section" th:each="project : ${projects}">
+    <section class="section" th:each="p : ${project}">
 
-        <h1 class="title" th:text = "${project.name}">
+        <h1 class="title" th:text = "${p.name}">
 
             Project Name</h1>
 
-        <h2 class="subtitle" th:text = "${project.description}">
+        <h2 class="subtitle" th:text = "${p.description}">
 
             Project Description
 
         </h2>
-        <h2 class="subtitle" th:text = "'Estimated time: ' + ${project.totalTime}">
+        <h2 class="subtitle" th:text = "'Estimated time: ' + ${p.totalTime}">
 
             Estimated Time
 
         </h2>
+        <a href="/myprojects/createsubproject">
+        <button class="button is-primary">Create new subproject</button>
+    </a>
     </section>
 </div>
 </div>
 <section class="section">
-    <h1 class="title" th:text = "${project.name}">
-    Subtasks
-    </h1>
-
-    <div class="card" th:each="project : ${projects}" $>
+    <div class="card" th:each="sub : ${subprojects}" $>
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
-                    <p class="title is-4" id="title" th:text = "${project.name}"> </p>
-                    <p class="subtitle is-5" id ="subtitle" th:text="${project.description}"> </p>
+                    <p class="title is-4" id="title" th:text = "${sub.name}"> </p>
+                    <p class="subtitle is-5" id ="subtitle" th:text="${sub.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="'projects?id=' + ${project.id}" target="_blank">
-                        <button class="button">Link</button>
+                    <a th:href="'subproject?id=' + ${sub.id}" target="_blank">
+                        <button class="button is-info">Explore</button>
                     </a>
                 </div>
             </div>
