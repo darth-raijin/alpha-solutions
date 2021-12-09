@@ -40,12 +40,15 @@ public class ProjectRepository {
 
         // IF GUCCI OPRET I REPOSITORY
         Project project = new Project(personnelNumber, 2.5, name, description, null, null, false, projectRepository.size() + 1);
+        projectRepository.add(project);
+        
+        System.out.println("Project created with id: " + project.getId());
+        return project.getId();
 
         // IF ALSO GUCCI RETURN PROJEECT ID
 
         // IF NOT -1
 
-        return -1;
     }
     
 }
