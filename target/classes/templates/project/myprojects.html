@@ -10,30 +10,35 @@
 
 
 <div>
-    <section class="section" th:each="wishlist : ${Wishlist}">
+    <section class="section">
 
-        <h1 class="title" th:text = "${wishlist.name}">
+        <h1 class="title" >
 
-            ${wishlist.name}</h1>
+            My Projects</h1>
 
-        <h2 class="subtitle" th:text = "${wishlist.description}">
+        <h2 class="subtitle">
 
-            ${wishlist.description}
+            Explore and administrate your projects, or create a new one!
 
         </h2>
+        <a href="/myprojects/createproject">
+        <button class="button is-primary">
+            Create new project
+        </button>
+    </a>
     </section>
 </div>
 </div>
 <section class="section">
-    <div class="card" th:each="item : ${list}" $>
+    <div class="card" th:each="project : ${projects}" $>
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
-                    <p class="title is-4" id="title" th:text = "${item.name}"> </p>
-                    <p class="subtitle is-5" id ="subtitle" th:text="${item.price}"></p>
+                    <p class="title is-4" id="title" th:text = "${project.name}"> </p>
+                    <p class="subtitle is-5" id ="subtitle" th:text="${project.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="${item.link}" target="_blank">
+                    <a th:href="'projects?id=' + ${project.id}" target="_blank">
                         <button class="button">Link</button>
                     </a>
                 </div>
