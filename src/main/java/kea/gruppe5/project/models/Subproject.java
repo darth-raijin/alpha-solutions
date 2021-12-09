@@ -4,8 +4,6 @@ public class Subproject {
     double subprojectTime;
     String name;
     String description;
-    String taskList;
-    //ved ikke om mange af de her ID er strings eller int
     int projectId;
     boolean isCompleted;
     int id;
@@ -13,14 +11,12 @@ public class Subproject {
     public Subproject(double subprojectTime,
                       String name,
                       String description,
-                      String taskList,
                       int projectId,
                       boolean isCompleted,
                       int id) {
         this.subprojectTime = subprojectTime;
         this.name = name;
         this.description = description;
-        this.taskList = taskList;
         this.projectId = projectId;
         this.isCompleted = isCompleted;
         this.id = id;
@@ -51,13 +47,6 @@ public class Subproject {
         this.description = description;
     }
 
-    public String getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(String taskList) {
-        this.taskList = taskList;
-    }
 
     public int getProjectId() {
         return projectId;

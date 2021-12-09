@@ -8,7 +8,6 @@ public class Project {
     String name;
     String description;
     ArrayList<User> workersList;
-    ArrayList<Subproject> subprojectList;
     Boolean isUpdated;
 
     public Project(String personnelNumber,
@@ -16,7 +15,6 @@ public class Project {
                    String name,
                    String description,
                    ArrayList<User> workersList,
-                   ArrayList<Subproject> subprojectList,
                    Boolean isUpdated,
                    int id) {
         this.personnelNumber = personnelNumber;
@@ -24,7 +22,6 @@ public class Project {
         this.name = name;
         this.description = description;
         this.workersList = workersList;
-        this.subprojectList = subprojectList;
         this.isUpdated = isUpdated;
         this.id = id;
     }
@@ -69,13 +66,6 @@ public class Project {
         this.workersList = workersList;
     }
 
-    public ArrayList<Subproject> getSubprojectList() {
-        return subprojectList;
-    }
-
-    public void setSubprojectList(ArrayList<Subproject> subprojectList) {
-        this.subprojectList = subprojectList;
-    }
 
     public Boolean getUpdated() {
         return isUpdated;

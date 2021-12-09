@@ -4,7 +4,6 @@ public class Task {
     double taskTime;
     String name;
     String description;
-    String subTaskList;
     int subProjectId;
     int id;
     boolean isCompleted;
@@ -12,7 +11,6 @@ public class Task {
     public Task(double taskTime,
                 String name,
                 String description,
-                String subTaskList,
                 int subProjectId,
                 int id,
                 boolean isCompleted) {
@@ -20,7 +18,6 @@ public class Task {
         this.taskTime = taskTime;
         this.name = name;
         this.description = description;
-        this.subTaskList = subTaskList;
         this.subProjectId = subProjectId;
         this.id = id;
         this.isCompleted = isCompleted;
@@ -48,14 +45,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getSubTaskList() {
-        return subTaskList;
-    }
-
-    public void setSubTaskList(String subTaskList) {
-        this.subTaskList = subTaskList;
     }
 
     public int getSubProjectId() {

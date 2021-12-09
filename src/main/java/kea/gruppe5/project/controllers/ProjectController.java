@@ -74,9 +74,12 @@ public class ProjectController {
     }
 
     @GetMapping("createsubproject") 
-    public String createSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
-        
-        return "root";
+    public String createSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+
+        SubProjectService.createSubproject(name, description, id);
+        return "project/createsubproject";
     }
 
     @GetMapping("tasks") 

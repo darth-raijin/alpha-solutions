@@ -8,7 +8,7 @@ public class ProjectRepository {
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
-        Project project = new Project("test0101k", 2.5, "Dick Cheney", "Building Dick Cheney clone", null, null, true, 1);
+        Project project = new Project("test0101k", 0, "Dick Cheney", "Building Dick Cheney clone", null, true, 1);
         projectRepository.add(project);
     }
 
@@ -39,9 +39,9 @@ public class ProjectRepository {
         // TODO OPRET FØRST I DATABASE 
 
         // IF GUCCI OPRET I REPOSITORY
-        Project project = new Project(personnelNumber, 2.5, name, description, null, null, false, projectRepository.size() + 1);
+        Project project = new Project(personnelNumber, 0, name, description, null, false, projectRepository.size() + 1);
         projectRepository.add(project);
-        
+
         System.out.println("Project created with id: " + project.getId());
         return project.getId();
 
