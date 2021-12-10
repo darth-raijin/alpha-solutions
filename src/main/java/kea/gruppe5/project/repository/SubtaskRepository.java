@@ -28,5 +28,18 @@ public class SubtaskRepository {
     }
 
 
+    public static ArrayList<Subtask> getSubtasksByParentId(int id) {
+        ArrayList<Subtask> owned = new ArrayList<Subtask>();
+
+        for (Subtask subtask : subtaskList) {
+            if (subtask.getTaskId() == id) {
+                owned.add(subtask);
+            }
+        }
+
+        return owned;
+    }
+
+
     
 }

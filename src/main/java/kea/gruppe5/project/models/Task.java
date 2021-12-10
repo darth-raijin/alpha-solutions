@@ -25,6 +25,12 @@ public class Task {
         this.projectId = projectId;
     }
 
+    public Task (String name, String description, int subProjectId) {
+        this.name = name;
+        this.description = description;
+        this.subProjectId = subProjectId;
+    }
+
     public int getProjectId() {
         return projectId;
     }

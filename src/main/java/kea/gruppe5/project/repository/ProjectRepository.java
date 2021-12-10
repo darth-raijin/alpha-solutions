@@ -40,6 +40,7 @@ public class ProjectRepository {
 
         // IF GUCCI OPRET I REPOSITORY
         Project project = new Project(personnelNumber, 0, name, description, null, false, projectRepository.size() + 1);
+        System.out.println(project);
         projectRepository.add(project);
 
         System.out.println("Project created with id: " + project.getId());

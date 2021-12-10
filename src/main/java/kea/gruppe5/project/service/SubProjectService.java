@@ -40,10 +40,12 @@ public class SubProjectService {
         // Fetches all subprojects that belong to project. For each Subproject, total time will be calculated for Task and Subtasks, and set to Subproject time
         ArrayList<Subproject> subprojects = SubprojectRepository.getSubprojectsByParentId(projectId);
         double totalTime = 0;
+
         for (Subproject subproject : subprojects) {
-            totalTime += TaskService.getTotalTime(subproject.getId());
-            totalTime += SubtaskService.getTotalTime(subproject.getId());
-            System.out.println("Subproject Id: " + subproject.getId() + " takes " + totalTime);
+            // A depth first approach is taken to calculate the time
+            double subprojectTime = TaskService.getTotalTime(subproject.getId());
+            System.out.println("Subproject ID: " + subproject.getId() + " has time: " + subprojectTime);
+            totalTime += subprojectTime;
 
             SubprojectRepository.updateTime(subproject.getId(), totalTime);
         }

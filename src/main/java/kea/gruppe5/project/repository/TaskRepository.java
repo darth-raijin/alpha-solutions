@@ -31,15 +31,31 @@ public class TaskRepository {
         }
     }
 
-    public static double getTotalTime(int subProjectId) {
-        double totalTime = 0;
+    public static void updateTime(int id, double taskTime) {
         for (Task task : taskList) {
-            if (task.getSubProjectId() == subProjectId) {
-                totalTime += task.getTaskTime();
+            if (task.getSubProjectId() == id) {
+                task.setTaskTime(taskTime);
             }
         }
-        System.out.println("All tasks for subproject " + subProjectId + " take " + totalTime);
-        return totalTime;
+    }
+
+    public static int createTask(String name, String description, int id) {
+        Task newTask = new Task(name, description, id);
+
+        // TODO opret i database - opdater newTask med ID fra DB
+        newTask.setId(taskList.size() + 1);
+        // Opret i Repository
+        taskList.add(newTask);
+        return newTask.getId();
+    }
+
+    public static Task getTaskById(int taskID) {
+        for (Task task : taskList) {
+            if (task.getId() == taskID) {
+                return task;
+            }
+        }
+        return null;
     }
     
 }

@@ -19,6 +19,23 @@ public class TaskService {
         SubtaskService.removeOwnedSubTasks(subID);
     }
     public static double getTotalTime(int subProjectId) {
-        return TaskRepository.getTotalTime(subProjectId);
+        ArrayList<Task> tasks = TaskRepository.getTasksByParentId(subProjectId);
+        double totalTime = 0;
+        for (Task task : tasks) {
+            // Dybde først søgning fortsætter. Hvert task får udregnet sin egen samlede tid baseret på subtasks
+            double taskTime = SubtaskService.getTotalTime(task.getId());
+            TaskRepository.updateTime(task.getId(), taskTime);
+            System.out.println("Task " + task.getId() + " has total time " + taskTime);
+            totalTime += taskTime;
+        }
+
+        return totalTime;
+    }
+	public static int createTask(String name, String description, String id) {
+        return TaskRepository.createTask(name, description, Integer.parseInt(id));
+	
+	}
+    public static Task getTaskById(int parseInt) {
+        return TaskRepository.getTaskById(parseInt);
     }
 }
