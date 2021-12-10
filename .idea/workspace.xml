@@ -6,14 +6,40 @@
   <component name="ChangeListManager">
     <list default="true" id="ff83a30b-83fa-4978-9e43-d0d52f813460" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/alpha-solutions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/alpha-solutions.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/ProjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/ProjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/ProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/myprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/myprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4ebfaa66-2f90-49df-81ed-9cff02f320d8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_session_spring_session_jdbc_2_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/root.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/root.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/ProjectApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/ProjectApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/controllers/TestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Subproject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Subproject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Subtask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Subtask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/models/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/ProjectRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/ProjectRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/SubprojectRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/SubprojectRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/SubtaskRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/SubtaskRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/TaskRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/TaskRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/AuthService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/ProjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/ProjectService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/project/myprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/myprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/SubProjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/SubProjectService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/SubtaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/SubtaskService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/TaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/TaskService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/TimeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/TimeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/utility/DatabaseConnectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/utility/DatabaseConnectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/kea/gruppe5/project/ProjectApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/kea/gruppe5/project/ProjectApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +56,29 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="alpha-solutions" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kea.gruppe5.project.ProjectApplication" />
@@ -53,10 +96,48 @@
       <option name="presentableId" value="Default" />
       <updated>1638532940603</updated>
       <workItem from="1638532945184" duration="1760000" />
+      <workItem from="1639128405902" duration="13430000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/AuthService.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kea/gruppe5/project/controllers/AuthController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kea/gruppe5/project/controllers/AuthController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kea/gruppe5/project/controllers/AuthController.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

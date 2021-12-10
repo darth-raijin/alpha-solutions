@@ -9,6 +9,7 @@ public class User {
     String city;
     String country;
     String phoneNumber;
+    String password;
     int id;
 
     public User(String name,
@@ -18,7 +19,8 @@ public class User {
                 String postalCode,
                 String city,
                 String country,
-                String phoneNumber) {
+                String phoneNumber,
+                String password) {
         this.name = name;
         this.personnelNumber = personnelNumber;
         this.email = email;
@@ -27,6 +29,7 @@ public class User {
         this.city = city;
         this.country = country;
         this.phoneNumber = phoneNumber;
+        this.password = password;
     }
 
     public String getName() {
@@ -91,6 +94,14 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {
