@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff83a30b-83fa-4978-9e43-d0d52f813460" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/alpha-solutions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/alpha-solutions.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/ProjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/repository/ProjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kea/gruppe5/project/service/ProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/myprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/myprojects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/ProjectRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/repository/ProjectRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/ProjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kea/gruppe5/project/service/ProjectService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/project/myprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/myprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/viewproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/viewproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/project/viewproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/viewproject.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +46,7 @@
       <option name="presentableId" value="Default" />
       <updated>1638532940603</updated>
       <workItem from="1638532945184" duration="1760000" />
+      <workItem from="1639077685355" duration="215000" />
     </task>
     <servers />
   </component>

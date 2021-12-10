@@ -7,7 +7,6 @@ public class Subtask {
     int id;
     int taskId;
     boolean isCompleted;
-    int subProjectId;
 
     public Subtask(double time,
                    String name,
@@ -21,15 +20,10 @@ public class Subtask {
         this.id = id;
         this.taskId = taskId;
         this.isCompleted = isCompleted;
-        this.subProjectId = subProjectId;
     }
 
     public double getTime() {
         return time;
-    }
-
-    public int getSubProjectId() {
-        return subProjectId;
     }
 
     public void setTime(double time) {

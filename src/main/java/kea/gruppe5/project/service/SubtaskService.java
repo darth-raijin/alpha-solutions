@@ -15,6 +15,6 @@ public class SubtaskService {
     }
 
     public static double getTotalTime(int subProjectId) {
-        return SubtaskRepository.getTotalTime(subProjectId);
+        return 0;
     }
 }

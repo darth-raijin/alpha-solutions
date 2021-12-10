@@ -15,17 +15,18 @@ public class SubtaskRepository {
         }
     }
 
-    public static double getTotalTime(int subProjectId) {
-        double totalTime = 0;
 
+    public static ArrayList<Subtask> getSubtasksByParent(int taskID) {
+        ArrayList<Subtask> owned = new ArrayList<Subtask>();
         for (Subtask subtask : subtaskList) {
-            if (subProjectId == subtask.getSubProjectId()) {
-                totalTime += subtask.getTime();
+            if (subtask.getTaskId() == taskID) {
+                owned.add(subtask);
             }
         }
-
-        return totalTime;
+    
+    return owned;
     }
+
 
     
 }
