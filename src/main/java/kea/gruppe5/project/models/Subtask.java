@@ -13,7 +13,7 @@ public class Subtask {
                    String description,
                    int id,
                    int taskId,
-                   boolean isCompleted, int subProjectId) {
+                   boolean isCompleted) {
         this.time = time;
         this.name = name;
         this.description = description;

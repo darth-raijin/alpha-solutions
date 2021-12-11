@@ -41,5 +41,42 @@ public class SubtaskRepository {
     }
 
 
+    public static int createSubtask(String name, String description, double time, String id) {
+        // TODO Add to Database
+
+
+        // TODO add til repo
+        Subtask subtask = new Subtask(time, name, description, subtaskList.size() + 1, Integer.parseInt(id), false);
+        subtaskList.add(subtask);
+        return subtask.getId();
+    }
+
+
+    public static Subtask getSubtaskById(int parseInt) {
+        for (Subtask subtask : subtaskList) {
+            if (subtask.getId() == parseInt) {
+                return subtask;
+            }
+        }
+        return null;
+    }
+
+
+    public static int updateSubtask(String name, String description, double time, int id) {
+        System.out.println("Incoming id: " + id);
+        for (Subtask subtask : subtaskList) {
+            System.out.println("Current Subtask: " + subtask.getId());
+            if (subtask.getId() == id) {
+                subtask.setDescription(description);
+                subtask.setName(name);
+                subtask.setTime(time);
+                System.out.println("owned " + subtask.getTaskId() + "");
+                return subtask.getTaskId();
+            }
+        }
+        return -1;
+    }
+
+
     
 }

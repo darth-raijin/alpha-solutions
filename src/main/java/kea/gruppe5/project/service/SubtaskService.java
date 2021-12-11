@@ -29,4 +29,16 @@ public class SubtaskService {
 
         return SubtaskRepository.getSubtasksByParentId(id);
 	}
+
+    public static int createSubtask(String name, String description, double time, String id) {
+        return SubtaskRepository.createSubtask(name, description, time, id);
+    }
+
+    public static Subtask getSubtaskById(int parseInt) {
+        return SubtaskRepository.getSubtaskById(parseInt);
+    }
+
+    public static int updateSubtask(String name, String description, double time, int id) {
+        return SubtaskRepository.updateSubtask(name, description, time, id);
+    }
 }

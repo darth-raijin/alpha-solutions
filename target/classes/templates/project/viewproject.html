@@ -49,7 +49,7 @@
                     <p class="subtitle is-5" id ="subtitle" th:text="${sub.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="'subproject?id=' + ${sub.id}" target="_blank">
+                    <a th:href="'subproject?id=' + ${sub.id}">
                         <button class="button is-info">Explore</button>
                     </a>
                     <a th:href="'deletesubproject?id=' + ${sub.id}" onClick="return confirm('This will be lost forever! Are you sure')" target="_blank">

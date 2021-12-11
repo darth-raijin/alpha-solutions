@@ -32,7 +32,7 @@
         </a>
 
         <a th:href="'/myprojects/createsubtask?id=' + ${t.id}">
-        <button class="button is-primary">Create task</button>
+        <button class="button is-primary">Create subtask</button>
     </a>
     </section>
 </div>
@@ -46,7 +46,7 @@
                     <p class="subtitle is-5" id ="subtitle" th:text="${subtask.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="'updatesubtask?id=' + ${subtask.id}" target="_blank">
+                    <a th:href="'updatesubtask?id=' + ${subtask.id}">
                         <button class="button is-info">Update</button>
                     </a>
                 </div>

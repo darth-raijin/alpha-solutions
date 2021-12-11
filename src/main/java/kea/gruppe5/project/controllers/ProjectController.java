@@ -211,7 +211,8 @@ public class ProjectController {
     }
 
     @GetMapping("updatetask")
-    public String viewUpdateTask() {
+    public String viewUpdateTask(Model model, @RequestParam(value = "id", required = true) String id) {
+        model.addAttribute("task", TaskService.getTaskById(Integer.parseInt(id)));
         return "project/updatetask";
     }
 
@@ -219,15 +220,60 @@ public class ProjectController {
             SUBTASKS
          */
 
-    @GetMapping("viewSubtasks") 
+    @GetMapping("viewsubtasks") 
     public String viewSubtasks(Model model, @RequestParam(value = "id", required = true) String id) {
         
         return "root";
     }
 
-    @GetMapping("createSubtask") 
-    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
-        
-        return "root";
+    @GetMapping("createsubtask") 
+    public String createSubtaskView(@RequestParam(value = "id", required = true) String id) {
+
+
+        return "project/createsubtask";
     }
+
+    @PostMapping("createsubtask")
+    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String id) {
+        // Retrieving POST body values
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        double time = Double.valueOf(String.valueOf(body.get("time")).replace("[","").replace("]",""));
+
+        // If object is successfully created, returns value with ID - else -1
+        int creationResult = SubtaskService.createSubtask(name, description, time, id);
+
+        if(creationResult >= 0) {
+            redirectAttrs.addAttribute("id", id);
+            return "redirect:/myprojects/tasks?id={id}";
+        }
+
+        return "redirect:/myprojects/tasks?status=fail";
+
+    }
+
+    @GetMapping("updatesubtask")
+    public String updateSubtaskView(Model model, @RequestParam(value = "id", required = true) String id) {
+        
+        model.addAttribute("subtask",SubtaskService.getSubtaskById(Integer.parseInt(id)));
+        return "project/updatesubtask";
+    }
+
+    @PostMapping("updatesubtask")
+    public String updateSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        double time = Double.valueOf(String.valueOf(body.get("time")).replace("[","").replace("]",""));
+
+        // If object is successfully created, returns value with ID - else -1
+        int taskID = SubtaskService.updateSubtask(name, description, time, Integer.parseInt(id));
+
+        if(taskID >= 0) {
+            redirectAttrs.addAttribute("id", taskID);
+            return "redirect:/myprojects/tasks?id={id}";
+        }
+
+        return "redirect:/myprojects/tasks?status=fail";
+    }
+
 }
