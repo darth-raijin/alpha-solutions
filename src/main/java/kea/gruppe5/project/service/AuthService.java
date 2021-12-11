@@ -36,7 +36,8 @@ public class AuthService {
             User currentUser = UserRepository.getByEmail(email);
 
             if (currentUser == null) {
-                // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt tilhængende data
+                // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt
+                // tilhængende data
             }
             return currentUser;
         }
@@ -45,7 +46,7 @@ public class AuthService {
     }
 
     public static User createUser(String fullName, String email, String password, String address, String city, String postalCode, String phoneNumber) {
-        User newUser = UserRepository.addUser(new User(fullName, null, email, password, address, city, postalCode, phoneNumber));
+        User newUser = UserRepository.addUser(new User(fullName, null, email, password, address, city, postalCode, phoneNumber, password));
 
 
 

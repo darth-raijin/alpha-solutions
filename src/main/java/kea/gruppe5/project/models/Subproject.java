@@ -1,26 +1,22 @@
 package kea.gruppe5.project.models;
 
 public class Subproject {
-    double subprojectTime;
+    double totalTime;
     String name;
     String description;
-    String taskList;
-    //ved ikke om mange af de her ID er strings eller int
     int projectId;
     boolean isCompleted;
     int id;
 
-    public Subproject(double subprojectTime,
+    public Subproject(double totalTime,
                       String name,
                       String description,
-                      String taskList,
                       int projectId,
                       boolean isCompleted,
                       int id) {
-        this.subprojectTime = subprojectTime;
+        this.totalTime = totalTime;
         this.name = name;
         this.description = description;
-        this.taskList = taskList;
         this.projectId = projectId;
         this.isCompleted = isCompleted;
         this.id = id;
@@ -28,11 +24,11 @@ public class Subproject {
 
 
     public double getSubprojectTime() {
-        return subprojectTime;
+        return totalTime;
     }
 
     public void setSubprojectTime(double subprojectTime) {
-        this.subprojectTime = subprojectTime;
+        this.totalTime = subprojectTime;
     }
 
     public String getName() {
@@ -51,13 +47,6 @@ public class Subproject {
         this.description = description;
     }
 
-    public String getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(String taskList) {
-        this.taskList = taskList;
-    }
 
     public int getProjectId() {
         return projectId;

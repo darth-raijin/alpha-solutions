@@ -11,7 +11,7 @@ public class UserRepository {
 
 
     public static void loadUsers() {
-        User testUser = new User("John Doe", "test0101k", "test@vontest.com", null, null, null, null, null);
+        User testUser = new User("John Doe", "test0101k", "test@vontest.com", null, null, null, null, null, "123");
         users.add(testUser);
 
         // Database load alle brugere bla bla bla

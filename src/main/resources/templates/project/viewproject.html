@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head th:include="fragments/header :: header">
+</head>
+
+<body>
+<div th:include="fragments/navbar :: navbar"></div>
+
+
+
+<div>
+    <section class="section" th:each="p : ${project}">
+
+        <h1 class="title" th:text = "${p.name}">
+
+            Project Name</h1>
+
+        <h2 class="subtitle" th:text = "${p.description}">
+
+            Project Description
+
+        </h2>
+        <h2 class="subtitle" th:text = "'Estimated time: ' + ${p.totalTime}">
+
+            Estimated Time
+
+        </h2>
+
+        <a th:href="'/myprojects/updateproject?id=' + ${p.id}">
+            <button class="button is-info">Update</button>
+        </a>
+
+        <a th:href="'/myprojects/createsubproject?id=' + ${p.id}">
+        <button class="button is-primary">Create new subproject</button>
+    </a>
+    </section>
+</div>
+</div>
+<section class="section">
+    <div class="card" th:each="sub : ${subprojects}" $>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <p class="title is-4" id="title" th:text = "${sub.name}"> </p>
+                    <p class="subtitle is-5" id ="subtitle" th:text="${sub.description}"> </p>
+                </div>
+                <div class="media-right">
+                    <a th:href="'subproject?id=' + ${sub.id}" target="_blank">
+                        <button class="button is-info">Explore</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<footer th:include="fragments/footer :: footer">
+</footer>
+
+</html>
