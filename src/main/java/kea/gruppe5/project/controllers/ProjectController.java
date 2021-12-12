@@ -58,7 +58,7 @@ public class ProjectController {
     }
 
     @GetMapping("deleteproject") 
-    public String viewProject(@RequestParam(value = "id", required = true) String id) {
+    public String viewDeleteProject(@RequestParam(value = "id", required = true) String id) {
         ProjectService.deleteProject(Integer.parseInt(id));
         return "project/myprojects";
     }
