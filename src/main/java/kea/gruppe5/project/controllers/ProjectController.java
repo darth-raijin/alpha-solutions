@@ -40,7 +40,6 @@ public class ProjectController {
 
     @GetMapping("/calculateTime") 
     public String calculateTime(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) {
-        System.out.println("Started calculation of time for project ID: " + id);
         ProjectService.calculateTime(Integer.parseInt(id));
         redirectAttrs.addAttribute("id", id);
         return "redirect:/myprojects/projects?id={id}";
