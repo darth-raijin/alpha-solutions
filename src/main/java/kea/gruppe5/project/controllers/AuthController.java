@@ -35,24 +35,24 @@ public class AuthController {
 
     @PostMapping ("/login")
     public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
+        // Hente varaible fra POST request
         String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
         String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
 
-        User user = AuthService.authenticateUser(email, password, session);
+        // Metode kaldes for at validere det indtastede login
+        User user = AuthService.authenticateUser(email, password);
         
-        if(user != null) {
-            System.out.println("User successfully authenticated!");
-            // Session skal indeholde PersonnelNumber, Navn og Email
-            System.out.println(user.getEmail() + " " + user.getName());
-            
+        // Hvis der bliver fundet en bruger med det givne login, bliver koden i if-statement kørt.
+        if(user != null) {            
+            // Den nuværende får sine oplysninger gemt i en session
             session.setAttribute("personnelNumber", user.getPersonnelNumber());
             session.setAttribute("email", user.getEmail());
             session.setAttribute("name", user.getName());
 
-            System.out.println(session.getAttributeNames());
             return "redirect:/";
         }
 
+        // Hvis login forsøget fejler, bliver der send tilbage til loginformularen, med et URL parameter
         redirectAttrs.addAttribute("status", "fail");
         return "redirect:/auth/login?status={status}";
     }

@@ -1,6 +1,7 @@
 package kea.gruppe5.project.repository;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import kea.gruppe5.project.models.User;
 
@@ -38,6 +39,10 @@ public class UserRepository {
 
     public void updateUser(User user) {
 
+    }
+
+
+    public static void createUserFromDatabase(Map<String, String> userFetch) {
     }
 
     

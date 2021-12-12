@@ -15,19 +15,11 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 
 public class AuthService {
-    private static boolean testing = true;
-
     private AuthService(){
 
     }
 
-
-    public static User authenticateUser(String email, String password, HttpSession session) {
-        if(testing == true){
-            User currentUser = UserRepository.getByEmail("test@vontest.com");
-            return currentUser;
-        }
-
+    public static User authenticateUser(String email, String password) {
         // Benytter sig af Database for at validere for at undgå lagring af password i systemet
         Map<String, String> userFetch = DatabaseConnectionManager.getUserByEmail(email);
 
@@ -37,10 +29,10 @@ public class AuthService {
 
             if (currentUser == null) {
                 // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt tilhængende data
+                UserRepository.createUserFromDatabase(userFetch);
             }
             return currentUser;
         }
-
         return null;
     }
 
