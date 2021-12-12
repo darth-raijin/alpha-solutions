@@ -37,7 +37,7 @@ public class AuthService {
     }
 
     public static User createUser(String fullName, String email, String password, String address, String city, String postalCode, String phoneNumber) {
-        User newUser = UserRepository.addUser(new User(fullName, null, email, password, address, city, postalCode, phoneNumber));
+        User newUser = UserRepository.addUser(new User(fullName, "", email, password, address, city, postalCode, phoneNumber));
 
 
 
