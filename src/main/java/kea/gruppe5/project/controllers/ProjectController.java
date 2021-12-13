@@ -20,6 +20,7 @@ import kea.gruppe5.project.repository.SubprojectRepository;
 import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.service.ProjectService;
 import kea.gruppe5.project.service.SubProjectService;
+import kea.gruppe5.project.service.SubtaskService;
 import kea.gruppe5.project.service.TaskService;
 
 @Controller
@@ -28,11 +29,20 @@ public class ProjectController {
 
     @GetMapping("/")
     public String myprojects(Model model, HttpSession session) {
-
+        if (session.getAttribute("email") == null) {
+            return "redirect:/auth/login";
+        }
         model.addAttribute("projects", ProjectService.getProjectsByUUID
         (String.valueOf(session.getAttribute("personnelNumber"))));
 
         return "project/myprojects";
+    }
+
+    @GetMapping("/calculateTime") 
+    public String calculateTime(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) {
+        ProjectService.calculateTime(Integer.parseInt(id));
+        redirectAttrs.addAttribute("id", id);
+        return "redirect:/myprojects/projects?id={id}";
     }
 
     /*
@@ -47,13 +57,20 @@ public class ProjectController {
         return "project/viewproject";
     }
 
+    @GetMapping("deleteproject") 
+    public String viewDeleteProject(@RequestParam(value = "id", required = true) String id) {
+        ProjectService.deleteProject(Integer.parseInt(id));
+        return "project/myprojects";
+    }
+
     @GetMapping("updateproject")
     public String viewUpdateProject(Model model, @RequestParam(value = "id", required = true) String id) {
+        System.out.println(ProjectService.getProjectById(id));
         model.addAttribute("project", ProjectService.getProjectById(id));
         return "project/updateproject";
     }
 
-    @PostMapping("updateProject")
+    @PostMapping("updateproject")
     public String updateProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
@@ -62,7 +79,7 @@ public class ProjectController {
         
         if (updated) {
             redirectAttrs.addAttribute("id", id);
-            return "redirect:/myprojects/project?id={id}";
+            return "redirect:/myprojects/projects?id={id}";
         }
 
         return "redirect:/myprojects/updateproject?status=fail";
@@ -104,6 +121,11 @@ public class ProjectController {
         return "project/viewsubproject";
     }
 
+    @GetMapping("createsubproject")
+    public String viewCreateSubProject(@RequestParam(value = "id", required = true) String id) {
+        return "project/createsubproject";
+    }
+
     @PostMapping("createsubproject") 
     public String createSubproject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
         // Det ID der bliver modtaget er ID for ejeren. I dette tilfælde hvilket projekt det hører under
@@ -115,7 +137,7 @@ public class ProjectController {
 
         if (creationResult >= 0) {
             redirectAttrs.addAttribute("id", creationResult);
-            return "redirect:/myprojects/subprojects?id={id}";
+            return "redirect:/myprojects/subproject?id={id}";
         }
         
         return "redirect:/myprojects/createsubproject?status=fail";
@@ -142,37 +164,115 @@ public class ProjectController {
         return "redirect:/myprojects/updatesubproject?status=fail";
     }
 
+    @GetMapping("deletesubproject")
+    public String deleteSubProject(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) {
+        int parentId = SubProjectService.deleteSubProject(Integer.parseInt(id));
+        if (parentId >= 0) {
+            System.out.println("Subproject successfully deleted ID: " + id);
+
+        }
+        redirectAttrs.addAttribute("id", parentId);
+        return "redirect:/myprojects/projects?id={id}";
+    }
+
     /*
             TASKS
     */
 
     @GetMapping("tasks") 
     public String viewTasks(Model model, @RequestParam(value = "id", required = true) String id) {
-        
-        System.out.println("ID: " + id);
-        return "root";
+        model.addAttribute("task", TaskService.getTaskById(Integer.parseInt(id)));
+        model.addAttribute("subtasks", SubtaskService.getSubtasksByParentId(Integer.parseInt(id)));
+        return "project/viewtask";
     }
 
     @GetMapping("createtask") 
-    public String createTask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
-        
+    public String createTask(@RequestParam(value = "id", required = true) String id) {
 
-        return "root";
+        return "project/createtask";
+    }
+
+    @PostMapping("createtask") 
+    public String createtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        // Det ID der bliver modtaget er ID for ejeren. I dette tilfælde hvilket projekt det hører under
+        
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        
+        int creationResult = TaskService.createTask(name, description, id);
+
+        if (creationResult >= 0) {
+            redirectAttrs.addAttribute("id", creationResult);
+            return "redirect:/myprojects/subproject?id={id}";
+        }
+        
+        return "redirect:/myprojects/createtask?status=fail";
+    }
+
+    @GetMapping("updatetask")
+    public String viewUpdateTask(Model model, @RequestParam(value = "id", required = true) String id) {
+        model.addAttribute("task", TaskService.getTaskById(Integer.parseInt(id)));
+        return "project/updatetask";
     }
 
         /*
             SUBTASKS
          */
 
-    @GetMapping("viewSubtasks") 
+    @GetMapping("viewsubtasks") 
     public String viewSubtasks(Model model, @RequestParam(value = "id", required = true) String id) {
         
         return "root";
     }
 
-    @GetMapping("createSubtask") 
-    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs) {
-        
-        return "root";
+    @GetMapping("createsubtask") 
+    public String createSubtaskView(@RequestParam(value = "id", required = true) String id) {
+
+
+        return "project/createsubtask";
     }
+
+    @PostMapping("createsubtask")
+    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String id) {
+        // Retrieving POST body values
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        double time = Double.valueOf(String.valueOf(body.get("time")).replace("[","").replace("]",""));
+
+        // If object is successfully created, returns value with ID - else -1
+        int creationResult = SubtaskService.createSubtask(name, description, time, id);
+
+        if(creationResult >= 0) {
+            redirectAttrs.addAttribute("id", id);
+            return "redirect:/myprojects/tasks?id={id}";
+        }
+
+        return "redirect:/myprojects/tasks?status=fail";
+
+    }
+
+    @GetMapping("updatesubtask")
+    public String updateSubtaskView(Model model, @RequestParam(value = "id", required = true) String id) {
+        
+        model.addAttribute("subtask",SubtaskService.getSubtaskById(Integer.parseInt(id)));
+        return "project/updatesubtask";
+    }
+
+    @PostMapping("updatesubtask")
+    public String updateSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        double time = Double.valueOf(String.valueOf(body.get("time")).replace("[","").replace("]",""));
+
+        // If object is successfully created, returns value with ID - else -1
+        int taskID = SubtaskService.updateSubtask(name, description, time, Integer.parseInt(id));
+
+        if(taskID >= 0) {
+            redirectAttrs.addAttribute("id", taskID);
+            return "redirect:/myprojects/tasks?id={id}";
+        }
+
+        return "redirect:/myprojects/tasks?status=fail";
+    }
+
 }
