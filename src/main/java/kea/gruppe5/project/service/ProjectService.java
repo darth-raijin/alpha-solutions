@@ -24,7 +24,7 @@ public class ProjectService {
         return p;
     }
 
-    public static int createProject(String name, String description, String personnelNumber) {
+    public static int createProjectInt(String name, String description, String personnelNumber) {
         // Forsøger at oprette projektet - hvis succesfuldt bliver Project id returnet
         return ProjectRepository.createProject(name, description, personnelNumber);
     }
