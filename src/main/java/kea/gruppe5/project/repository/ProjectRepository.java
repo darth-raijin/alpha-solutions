@@ -1,10 +1,28 @@
 package kea.gruppe5.project.repository;
 
+import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Project;
+import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class ProjectRepository {
+    private static Connection connection = null;
+
+    public static boolean setConnection() {
+        final String url = DatabaseConnectionManager.getUrl(); // TODO FIX LOGIN
+        boolean res = false;
+        try {
+            connection = DriverManager.getConnection(url, DatabaseConnectionManager.getUsername(), DatabaseConnectionManager.getPassword());
+            res = true;
+            System.out.println("Connection made!");
+        } catch (SQLException ioerr) {
+            System.out.println(ioerr);
+            throw new RuntimeException(ioerr);
+        }
+        return res;
+    }
+
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
@@ -12,7 +30,7 @@ public class ProjectRepository {
         projectRepository.add(project);
     }
 
-    public static ArrayList<Project> getProjectsByUUID (String uuid) {
+    public static ArrayList<Project> getProjectsByUUID(String uuid) {
         ArrayList<Project> result = new ArrayList<>();
 
         for (Project project : projectRepository) {
@@ -34,7 +52,32 @@ public class ProjectRepository {
         return null;
     }
 
-    public static int createProject(String name, String description, String personnelNumber) {
+    public static String createProject(String name, String description) {
+        setConnection();
+        String insstr = "INSERT INTO projects(name, description) values (?,?) ";
+        PreparedStatement preparedStatement;
+        String result = "";
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.executeUpdate();
+            ResultSet column = preparedStatement.getGeneratedKeys();
+            if (column.next()) {
+                result = column.getString(1);
+                System.out.println("Created column " + result);
+            }
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return "400";
+        }
+        System.out.println("Wishlist created successfully");
+        return result;
+
+    }
+
+
         System.out.println("Attempting to create project " + name + " by user " + personnelNumber);
         // TODO OPRET FØRST I DATABASE 
 

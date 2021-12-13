@@ -15,6 +15,7 @@ public class DatabaseConnectionManager {
 
     private DatabaseConnectionManager(){}
 
+
     public static Connection getConnection(){
         if(conn != null){
             return conn;
@@ -37,6 +38,29 @@ public class DatabaseConnectionManager {
 
 
         return null;
+    }
+    public static String getUrl() {
+        return url;
+    }
+
+    public static void setUrl(String url) {
+        DatabaseConnectionManager.url = url;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        DatabaseConnectionManager.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        DatabaseConnectionManager.password = password;
     }
 
 }
