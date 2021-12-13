@@ -96,7 +96,7 @@ public class SubprojectRepository {
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
             preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
-
+            System.out.println("Task updated in database");
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
             return false;
