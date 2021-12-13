@@ -12,8 +12,8 @@ public class UserRepository {
 
 
     public static void loadUsers() {
-        User testUser = new User("John Doe", "test0101k", "test@vontest.com");
-        users.add(testUser);
+        //User testUser = new User("John Doe", "test0101k", "test@vontest.com");
+        //users.add(testUser);
 
         // Database load alle brugere bla bla bla
     }
@@ -37,7 +37,9 @@ public class UserRepository {
     }
 
 
-    public static User addUser(String fullName, String email, String password) {
+    public static User addUser(User newUser) {
+
+
         return null;
     }
 

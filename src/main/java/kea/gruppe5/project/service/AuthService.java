@@ -36,8 +36,9 @@ public class AuthService {
         return null;
     }
 
+    // Kan denne ikke fjernes? Den bliver gemt i UserRepository og bliver lavet i AitjControler
     public static User createUser(String fullName, String email, String password) {
-        User newUser = UserRepository.addUser(fullName, email, password);
+        User newUser = new User(fullName, "" , email, password, "", "", "", "") ;
 
 
 

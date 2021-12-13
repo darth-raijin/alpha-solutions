@@ -2,6 +2,7 @@ package kea.gruppe5.project.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import kea.gruppe5.project.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,9 +73,11 @@ public class AuthController {
         String postalCode = String.valueOf(body.get("postalCode")).replace("[","").replace("]","");
         String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[","").replace("]","");
 
-        
+        User newUser = new User(fullName, "" , email, password, postalCode, city, phoneNumber, address) ;
 
-        return "hehe";
+        UserRepository.addUser(newUser);
+
+        return "auth/login";
     }
 
     @GetMapping("/signout")
