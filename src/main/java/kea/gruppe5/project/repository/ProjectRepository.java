@@ -52,48 +52,33 @@ public class ProjectRepository {
         return null;
     }
 
-    public static String createProject(String name, String description) {
+    public static int createProject(String name, String description, Integer personnelNumber) {
         setConnection();
         String insstr = "INSERT INTO projects(name, description) values (?,?) ";
         PreparedStatement preparedStatement;
-        String result = "";
+        int result = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, personnelNumber);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getString(1);
+                result = column.getInt(1);
                 System.out.println("Created column " + result);
             }
 
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
-            return "400";
+            return -1;
         }
-        System.out.println("Wishlist created successfully");
+        
+        System.out.println("Project created successfully");
         return result;
 
     }
-
-
-        System.out.println("Attempting to create project " + name + " by user " + personnelNumber);
-        // TODO OPRET FØRST I DATABASE 
-
-        // IF GUCCI OPRET I REPOSITORY
-        Project project = new Project(personnelNumber, 0, name, description, null, false, projectRepository.size() + 1);
-        System.out.println(project);
-        projectRepository.add(project);
-
-        System.out.println("Project created with id: " + project.getId());
-        return project.getId();
-
-        // IF ALSO GUCCI RETURN PROJEECT ID
-
-        // IF NOT -1
-
-    }
+    
 
     public static boolean updateProject(String name, String description, int id) {
         for (Project project : projectRepository) {
