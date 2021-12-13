@@ -87,6 +87,20 @@ public class SubprojectRepository {
     }
 
     public static boolean updateSubproject(String name, String description, int id) {
+        setConnection();
+        String insstr = "UPDATE subprojects set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return false;
+        }
         // UpDATE I DATABASE MUY IMPORTANT
         for (Subproject subproject : subprojectList) {
             if (subproject.getId() == id) {

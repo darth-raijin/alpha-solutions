@@ -107,6 +107,21 @@ public class SubtaskRepository {
 
 
     public static int updateSubtask(String name, String description, double time, int id) {
+        // Denne skal returnere int fordi den går til Subproject view
+        setConnection();
+        String insstr = "UPDATE subtasks set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return -1;
+        }
         System.out.println("Incoming id: " + id);
         for (Subtask subtask : subtaskList) {
             System.out.println("Current Subtask: " + subtask.getId());
