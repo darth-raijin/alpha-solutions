@@ -93,5 +93,33 @@ public class TaskRepository {
         }
         return null;
     }
+
+    public static boolean updateTask(String name, String description, int taskID) {
+        setConnection();
+        String insstr = "UPDATE tasks set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, taskID);
+            preparedStatement.executeUpdate();
+            System.out.println("Task updated in database");
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return false;
+        }
+        // UpDATE I DATABASE MUY IMPORTANT
+        for (Task task : taskList) {
+            if (task.getId() == taskID) {
+                task.setName(name);
+                task.setDescription(description);
+                System.out.println("Subproject " + taskID + " is updated");
+                return true;
+            }
+        }
+        return false;
+
+    }
     
 }
