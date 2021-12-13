@@ -10,6 +10,7 @@ public class User {
     String phoneNumber;
     int id;
     String password;
+    String country;
 
     public User(String name,
                 String personnelNumber,
@@ -18,7 +19,8 @@ public class User {
                 String postalCode,
                 String city,
                 String phoneNumber,
-                String address) {
+                String address,
+                String country) {
         this.name = name;
         this.personnelNumber = personnelNumber;
         this.email = email;
@@ -27,7 +29,7 @@ public class User {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.address = address;
-
+        this.country = country;
     }
 
     public String getName() {
@@ -77,34 +79,50 @@ public class User {
         this.password = password; }
 
     public String getAddress() {
+
         return address;
     }
 
     public void setAddress(String address) {
+
         this.address = address;
     }
 
     public String getPostalCode() {
+
         return postalCode;
     }
 
     public void setPostalCode(String postalCode) {
+
         this.postalCode = postalCode;
     }
 
     public String getCity() {
+
         return city;
     }
 
     public void setCity(String city) {
+
         this.city = city;
     }
 
     public String getPhoneNumber() {
+
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
+
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

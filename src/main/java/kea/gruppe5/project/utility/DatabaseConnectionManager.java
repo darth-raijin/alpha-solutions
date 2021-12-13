@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
-    private static String url;
-    private static String username;
-    private static String password;
+    private static String url = "jdbc:mysql://eu-cdbr-west-01.cleardb.com/heroku_792f1fce60bf47b?reconnect=true&autoReconnect=true";
+    private static String username = "b968a4f6313e7b";
+    private static String password = "5cac6434";
     private static Connection conn;
 
     private DatabaseConnectionManager(){}
@@ -23,9 +23,6 @@ public class DatabaseConnectionManager {
         try(InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(stream);
-            url = properties.getProperty("spring.datasource.url");
-            username = properties.getProperty("spring.datasource.username");
-            password = properties.getProperty("spring.datasource.password");
             System.out.println("Password: " + password +  " Username: " + username + " Url: " + url);
             conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected correctly!");

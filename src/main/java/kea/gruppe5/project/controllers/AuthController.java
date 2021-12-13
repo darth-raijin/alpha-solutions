@@ -72,12 +72,13 @@ public class AuthController {
         String city = String.valueOf(body.get("city")).replace("[","").replace("]","");
         String postalCode = String.valueOf(body.get("postalCode")).replace("[","").replace("]","");
         String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[","").replace("]","");
+        String country = String.valueOf(body.get("country")).replace("[","").replace("]","");
 
-        User newUser = new User(fullName, "" , email, password, postalCode, city, phoneNumber, address) ;
+        User newUser = new User(fullName, "" , email, password, postalCode, city, phoneNumber, address, country) ;
 
         UserRepository.addUser(newUser);
 
-        return "auth/login";
+        return "redirect:/auth/login?";
     }
 
     @GetMapping("/signout")

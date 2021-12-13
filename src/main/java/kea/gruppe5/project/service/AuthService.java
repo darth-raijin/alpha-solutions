@@ -29,21 +29,11 @@ public class AuthService {
 
             if (currentUser == null) {
                 // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt tilhængende data
-                UserRepository.createUserFromDatabase(userFetch);
+                //UserRepository.createUserFromDatabase(userFetch);
             }
             return currentUser;
         }
         return null;
     }
-
-    // Kan denne ikke fjernes? Den bliver gemt i UserRepository og bliver lavet i AitjControler
-    public static User createUser(String fullName, String email, String password) {
-        User newUser = new User(fullName, "" , email, password, "", "", "", "") ;
-
-
-
-        return newUser;
-    }
-
 
 }
