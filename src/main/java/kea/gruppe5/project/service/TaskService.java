@@ -38,4 +38,7 @@ public class TaskService {
     public static Task getTaskById(int parseInt) {
         return TaskRepository.getTaskById(parseInt);
     }
+    public static boolean updateTask(String name, String description, int parseInt) {
+        return TaskRepository.updateTask(name, description, parseInt);
+    }
 }

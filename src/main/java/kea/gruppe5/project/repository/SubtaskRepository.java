@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Subtask;
+import kea.gruppe5.project.models.Task;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class SubtaskRepository {
@@ -58,44 +59,35 @@ public class SubtaskRepository {
         return owned;
     }
 
-    public static String createSubtask(String name, String description, double time) {
+    public static int createSubtask(String name, String description, Integer taskID, double time) {
         setConnection();
-        String insstr = "INSERT INTO subtasks(name, description, time) values (?,?,?) ";
+        String insstr = "INSERT INTO subtasks(name, description, taskID, time) values (?,?,?,?) ";
         PreparedStatement preparedStatement;
-        String result = "";
+        int result = 0;
+        int subtaskID = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
-            preparedStatement.setDouble(3,time);
+            preparedStatement.setInt(3, taskID);
+            preparedStatement.setDouble(4, time);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getString(1);
+                result = column.getInt("taskID");
+                subtaskID = column.getInt(1);
                 System.out.println("Created column " + result);
             }
 
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
-            return "400";
+            return -1;
         }
-        System.out.println("Wishlist created successfully");
+        System.out.println("Subtask created successfully");
+        Subtask subtask = new Subtask(time,name,description,subtaskID,result,false);
         return result;
 
     }
-
-
-    public static int createSubtask(String name, String description, double time, String id) {
-        // TODO Add to Database
-
-
-        // TODO add til repo
-        Subtask subtask = new Subtask(time, name, description, subtaskList.size() + 1, Integer.parseInt(id), false);
-        subtaskList.add(subtask);
-        return subtask.getId();
-    }
-
-
     public static Subtask getSubtaskById(int parseInt) {
         for (Subtask subtask : subtaskList) {
             if (subtask.getId() == parseInt) {
@@ -107,6 +99,21 @@ public class SubtaskRepository {
 
 
     public static int updateSubtask(String name, String description, double time, int id) {
+        // Denne skal returnere int fordi den går til Subproject view
+        setConnection();
+        String insstr = "UPDATE subtasks set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Task updated in database");
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return -1;
+        }
         System.out.println("Incoming id: " + id);
         for (Subtask subtask : subtaskList) {
             System.out.println("Current Subtask: " + subtask.getId());

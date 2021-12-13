@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Project;
+import kea.gruppe5.project.models.Subproject;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class ProjectRepository {
@@ -26,7 +27,7 @@ public class ProjectRepository {
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
-        Project project = new Project("test0101k", 0, "Dick Cheney", "Building Dick Cheney clone", null, true, 1);
+        Project project = new Project(0, 0, "Dick Cheney", "Building Dick Cheney clone", null, true, 1);
         projectRepository.add(project);
     }
 
@@ -54,7 +55,7 @@ public class ProjectRepository {
 
     public static int createProject(String name, String description, Integer personnelNumber) {
         setConnection();
-        String insstr = "INSERT INTO projects(name, description) values (?,?) ";
+        String insstr = "INSERT INTO projects(name, description, personnelNumber) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
         try {
@@ -75,12 +76,28 @@ public class ProjectRepository {
         }
         
         System.out.println("Project created successfully");
+        Project project = new Project(personnelNumber, 0, name,description, null, null, result);
+        projectRepository.add(project);
         return result;
 
     }
     
 
     public static boolean updateProject(String name, String description, int id) {
+        setConnection();
+        String insstr = "UPDATE projects set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Task updated in database");
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return false;
+        }
         for (Project project : projectRepository) {
             if (project.getId() == id) {
                 project.setName(name);
