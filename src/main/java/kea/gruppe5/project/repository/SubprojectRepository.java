@@ -42,39 +42,33 @@ public class SubprojectRepository {
         return result;
     }
 
-    public static String createSubproject(String name, String description) {
+    public static int createSubproject(String name, String description, Integer projectID) {
         setConnection();
-        String insstr = "INSERT INTO subprojects(name, description) values (?,?) ";
+        String insstr = "INSERT INTO subprojects(name, description, projectID) values (?,?,?) ";
         PreparedStatement preparedStatement;
-        String result = "";
+        int result = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, projectID);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getString(1);
+                result = column.getInt(1);
                 System.out.println("Created column " + result);
             }
 
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
-            return "400";
+            return -1;
         }
-        System.out.println("Wishlist created successfully");
-        return result;
-
-    }
-
-    public static int createSubproject(String name, String description, String id) {
-        // TODO Opret i database 
-
-        // OPret i repo
-        Subproject newSubproject = new Subproject(0, name, description, Integer.parseInt(id), false, subprojectList.size() + 1);
+        System.out.println("Subproject created successfully");
+        Subproject newSubproject = new Subproject(0, name, description, projectID, false, result);
         subprojectList.add(newSubproject);
 
-        return newSubproject.getId();
+        return result;
+
     }
 
     public static Subproject getSubprojectById(int subprojectID) {

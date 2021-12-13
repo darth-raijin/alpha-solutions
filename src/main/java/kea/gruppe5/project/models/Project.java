@@ -3,14 +3,14 @@ package kea.gruppe5.project.models;
 import java.util.ArrayList;
 
 public class Project {
-    String personnelNumber;
+    int personnelNumber;
     double totalTime;
     String name;
     String description;
     ArrayList<User> workersList;
     Boolean isUpdated;
 
-    public Project(String personnelNumber,
+    public Project(int personnelNumber,
                    double totalTime,
                    String name,
                    String description,
@@ -26,7 +26,7 @@ public class Project {
         this.id = id;
     }
 
-    public String getPersonnelNumber(){
+    public int getPersonnelNumber(){
         return personnelNumber;
     }
     public void setPersonnelNumber(){
