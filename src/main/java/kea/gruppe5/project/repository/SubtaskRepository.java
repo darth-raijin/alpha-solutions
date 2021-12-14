@@ -12,22 +12,9 @@ public class SubtaskRepository {
 
     private static Connection connection = null;
 
-    public static boolean setConnection() {
-        final String url = DatabaseConnectionManager.getUrl(); // TODO FIX LOGIN
-        boolean res = false;
-        try {
-            connection = DriverManager.getConnection(url, DatabaseConnectionManager.getUsername(), DatabaseConnectionManager.getPassword());
-            res = true;
-            System.out.println("Connection made!");
-        } catch (SQLException ioerr) {
-            System.out.println(ioerr);
-            throw new RuntimeException(ioerr);
-        }
-        return res;
-    }
 
     public static void loadSubtasks() {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "SELECT * FROM subtasks";
         PreparedStatement preparedStatement;
         int results = 0;
@@ -83,7 +70,7 @@ public class SubtaskRepository {
     }
 
     public static int createSubtask(String name, String description, double time, Integer taskID) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO subtasks(name, description, taskID, time) values (?,?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
@@ -123,7 +110,7 @@ public class SubtaskRepository {
 
     public static int updateSubtask(String name, String description, double time, int id) {
         // Denne skal returnere int fordi den går til Subproject view
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "UPDATE subtasks set name = ?, description = ? WHERE id = ?";
         PreparedStatement preparedStatement;
         try {

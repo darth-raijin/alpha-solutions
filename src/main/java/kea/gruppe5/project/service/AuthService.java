@@ -21,11 +21,11 @@ public class AuthService {
 
     public static User authenticateUser(String email, String password) {
         // Benytter sig af Database for at validere for at undgå lagring af password i systemet
-        Map<String, String> userFetch = DatabaseConnectionManager.getUserByEmail(email);
+        String userPassword = DatabaseConnectionManager.getPasswordByEmail(email);
 
-        if (password == userFetch.get("password")) {
+        if (password.equals(userPassword)) {
             // Brugerens login er gyldigt
-            User currentUser = UserRepository.getByEmail(email);
+            User currentUser = UserRepository.getUserByEmail(email);
 
             if (currentUser == null) {
                 // Hvis brugeren ikke skulle eksistere i repository vil den blive hentet fra database med alt tilhængende data

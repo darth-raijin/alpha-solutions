@@ -23,13 +23,11 @@ public class UserRepository {
 
         // Database load alle brugere bla bla bla
     }
-
-
     public static User getUserByEmail(String email) {
         User user = new User();
         Connection connection = DatabaseConnectionManager.getConnection();
         String getStr = "SELECT name, email, address, postalcode, country, phonenumber, city, " +
-                " personnelNumber FROM alphasolutions.users WHERE email = '" + email + "'";
+                " personnelNumber FROM users WHERE email = '" + email + "'";
         Statement statement;
 
         try {
@@ -55,6 +53,30 @@ public class UserRepository {
         }
 
         return user;
+    }
+
+
+    public static String getPasswordByEmail(String email) {
+        Connection connection = DatabaseConnectionManager.getConnection();
+        String getStr = "SELECT password FROM alphasolutions.users WHERE email = '"+ email + "'";
+        Statement statement;
+        String passwordResult = "";
+
+        try {
+            statement = connection.createStatement();
+
+            ResultSet column = statement.executeQuery(getStr);
+            if (column.next()) {
+                passwordResult = column.getString(1);
+            }
+
+        } catch (SQLException err) {
+            System.out.println("bad happened:" + err.getMessage());
+            return " ";
+
+        }
+
+        return passwordResult;
     }
 
 

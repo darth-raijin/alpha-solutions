@@ -27,24 +27,24 @@ public class AuthController {
     @GetMapping("/login")
     public String loginView(HttpSession session) {
         if (session.getAttribute("email") != null) {
-                session.removeAttribute("personnelNumber");
-                session.removeAttribute("name");
-                session.removeAttribute("email");
+            session.removeAttribute("personnelNumber");
+            session.removeAttribute("name");
+            session.removeAttribute("email");
         }
         return "auth/login";
     }
 
-    @PostMapping ("/login")
-    public String login (@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
+    @PostMapping("/login")
+    public String login(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
         // Hente varaible fra POST request
-        String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
-        String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
+        String email = String.valueOf(body.get("email")).replace("[", "").replace("]", "");
+        String password = String.valueOf(body.get("password")).replace("[", "").replace("]", "");
 
         // Metode kaldes for at validere det indtastede login
         User user = AuthService.authenticateUser(email, password);
-        
+
         // Hvis der bliver fundet en bruger med det givne login, bliver koden i if-statement kørt.
-        if(user != null) {            
+        if (user != null) {
             // Den nuværende får sine oplysninger gemt i en session
             session.setAttribute("personnelNumber", user.getPersonnelNumber());
             session.setAttribute("email", user.getEmail());
@@ -63,26 +63,24 @@ public class AuthController {
         return "auth/register";
     }
 
-    @PostMapping ("/register")
-    public String register (@RequestParam MultiValueMap body) {
-            String fullName = String.valueOf(body.get("fullName")).replace("[","").replace("]","");
-            String email = String.valueOf(body.get("email")).replace("[","").replace("]","");
-            String password = String.valueOf(body.get("password")).replace("[","").replace("]","");
-            String address = String.valueOf(body.get("address")).replace("[","").replace("]","");
-            String city = String.valueOf(body.get("city")).replace("[","").replace("]","");
-            String postalCode = String.valueOf(body.get("postalCode")).replace("[","").replace("]","");
-            String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[","").replace("]","");
-            String country = String.valueOf(body.get("country")).replace("[","").replace("]","");
+    @PostMapping("/register")
+    public String register(@RequestParam MultiValueMap body) {
+        String fullName = String.valueOf(body.get("fullName")).replace("[", "").replace("]", "");
+        String email = String.valueOf(body.get("email")).replace("[", "").replace("]", "");
+        String password = String.valueOf(body.get("password")).replace("[", "").replace("]", "");
+        String address = String.valueOf(body.get("address")).replace("[", "").replace("]", "");
+        String city = String.valueOf(body.get("city")).replace("[", "").replace("]", "");
+        String postalCode = String.valueOf(body.get("postalCode")).replace("[", "").replace("]", "");
+        String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[", "").replace("]", "");
+        String country = String.valueOf(body.get("country")).replace("[", "").replace("]", "");
 
-            User newUser = new User(fullName, email, password, postalCode, city, phoneNumber, address, country);
-            UserRepository.addUser(newUser);
+        User newUser = new User(fullName, email, password, address, city, postalCode, phoneNumber, country);
+        UserRepository.addUser(newUser);
 
-            return "redirect:/auth/login?";
-        }
-        Write to studiegruppe
-                Aa
-
+        return "redirect:/auth/login?";
     }
+
+
 
     @GetMapping("/signout")
     public String signoutView(HttpSession session) {

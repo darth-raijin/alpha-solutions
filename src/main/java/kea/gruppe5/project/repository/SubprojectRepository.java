@@ -11,22 +11,9 @@ public class SubprojectRepository {
 
     private static Connection connection = null;
 
-    public static boolean setConnection() {
-        final String url = DatabaseConnectionManager.getUrl(); // TODO FIX LOGIN
-        boolean res = false;
-        try {
-            connection = DriverManager.getConnection(url, DatabaseConnectionManager.getUsername(), DatabaseConnectionManager.getPassword());
-            res = true;
-            System.out.println("Connection made!");
-        } catch (SQLException ioerr) {
-            System.out.println(ioerr);
-            throw new RuntimeException(ioerr);
-        }
-        return res;
-    }
 
     public static void loadSubprojects() {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "SELECT * FROM subprojects";
         PreparedStatement preparedStatement;
         int results = 0;
@@ -61,7 +48,7 @@ public class SubprojectRepository {
     }
 
     public static int createSubproject(String name, String description, Integer projectID) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO subprojects(name, description, projectID) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
@@ -99,7 +86,7 @@ public class SubprojectRepository {
     }
 
     public static boolean updateSubproject(String name, String description, int id) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "UPDATE subprojects set name = ?, description = ? WHERE id = ?";
         PreparedStatement preparedStatement;
         try {

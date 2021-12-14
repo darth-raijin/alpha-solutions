@@ -1,19 +1,18 @@
 package kea.gruppe5.project.models;
+import java.util.Random;
 
 public class User {
     String name;
-    String personnelNumber;
+    int personnelNumber;
     String email;
     String address;
     String postalCode;
     String city;
     String phoneNumber;
-    int id;
     String password;
     String country;
 
     public User(String name,
-                String personnelNumber,
                 String email,
                 String password,
                 String postalCode,
@@ -22,7 +21,6 @@ public class User {
                 String address,
                 String country) {
         this.name = name;
-        this.personnelNumber = personnelNumber;
         this.email = email;
         this.password = password;
         this.postalCode = postalCode;
@@ -30,6 +28,10 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.country = country;
+    }
+
+    public User() {
+
     }
 
     public String getName() {
@@ -42,12 +44,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPersonnelNumber() {
+    public int getPersonnelNumber() {
 
         return personnelNumber;
     }
 
-    public void setPersonnelNumber(String personnelNumber) {
+    public void setPersonnelNumber(int personnelNumber) {
 
         this.personnelNumber = personnelNumber;
     }
@@ -62,15 +64,6 @@ public class User {
         this.email = email;
     }
 
-    public int getId() {
-
-        return id;
-    }
-
-    public void setId(int id) {
-
-        this.id = id;
-    }
 
     public String getPassword() {
         return password; }

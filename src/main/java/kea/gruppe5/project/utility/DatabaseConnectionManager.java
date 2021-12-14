@@ -1,9 +1,7 @@
 package kea.gruppe5.project.utility;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 
@@ -35,12 +33,9 @@ public class DatabaseConnectionManager {
         return conn;
     }
 
-    public static Map<String, String> getUserByEmail(String email) {
-    }
-
     public static String getPasswordByEmail(String email) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String getStr = "SELECT password FROM alphasolutions.users WHERE email = '" + email + "'";
+        String getStr = "SELECT password FROM users WHERE email = '" + email + "'";
         Statement statement;
         String passwordResult = "";
 
@@ -61,10 +56,6 @@ public class DatabaseConnectionManager {
         return passwordResult;
     }
 
-
-
-        return null;
-}
     public static String getUrl() {
         return url;
     }

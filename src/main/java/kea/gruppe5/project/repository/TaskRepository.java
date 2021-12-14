@@ -12,22 +12,10 @@ public class TaskRepository {
 
     private static Connection connection = null;
 
-    public static boolean setConnection() {
-        final String url = DatabaseConnectionManager.getUrl(); // TODO FIX LOGIN
-        boolean res = false;
-        try {
-            connection = DriverManager.getConnection(url, DatabaseConnectionManager.getUsername(), DatabaseConnectionManager.getPassword());
-            res = true;
-            System.out.println("Connection made!");
-        } catch (SQLException ioerr) {
-            System.out.println(ioerr);
-            throw new RuntimeException(ioerr);
-        }
-        return res;
-    }
+
 
     public static void loadTasks() {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "SELECT * FROM tasks";
         PreparedStatement preparedStatement;
         int results = 0;
@@ -76,7 +64,7 @@ public class TaskRepository {
         }
     }
     public static int createTask(String name, String description, Integer subprojectID) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO tasks(name, description, subtaskID) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
@@ -113,7 +101,7 @@ public class TaskRepository {
     }
 
     public static boolean updateTask(String name, String description, int taskID) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "UPDATE tasks set name = ?, description = ? WHERE id = ?";
         PreparedStatement preparedStatement;
         try {

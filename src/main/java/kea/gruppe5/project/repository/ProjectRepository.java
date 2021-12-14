@@ -10,24 +10,11 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 public class ProjectRepository {
     private static Connection connection = null;
 
-    public static boolean setConnection() {
-        final String url = DatabaseConnectionManager.getUrl(); // TODO FIX LOGIN
-        boolean res = false;
-        try {
-            connection = DriverManager.getConnection(url, DatabaseConnectionManager.getUsername(), DatabaseConnectionManager.getPassword());
-            res = true;
-            System.out.println("Connection made!");
-        } catch (SQLException ioerr) {
-            System.out.println(ioerr);
-            throw new RuntimeException(ioerr);
-        }
-        return res;
-    }
 
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "SELECT * FROM projects";
         PreparedStatement preparedStatement;
         int results = 0;
@@ -73,7 +60,7 @@ public class ProjectRepository {
     }
 
     public static int createProject(String name, String description, Integer personnelNumber) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO projects(name, description, personnelNumber) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
@@ -103,7 +90,7 @@ public class ProjectRepository {
     
 
     public static boolean updateProject(String name, String description, int id) {
-        setConnection();
+        Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "UPDATE projects set name = ?, description = ? WHERE id = ?";
         PreparedStatement preparedStatement;
         try {
