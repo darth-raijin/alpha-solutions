@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import kea.gruppe5.project.repository.ProjectRepository;
 import kea.gruppe5.project.repository.SubprojectRepository;
+import kea.gruppe5.project.repository.SubtaskRepository;
 import kea.gruppe5.project.repository.TaskRepository;
 import kea.gruppe5.project.repository.UserRepository;
 import kea.gruppe5.project.service.ProjectService;
@@ -19,6 +20,7 @@ public class ProjectApplication {
 		ProjectRepository.loadProjects();
 		SubprojectRepository.loadSubprojects();
 		TaskRepository.loadTasks();
+		SubtaskRepository.loadSubtasks();
 	}
 
 }

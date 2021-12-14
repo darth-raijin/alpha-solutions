@@ -27,15 +27,34 @@ public class ProjectRepository {
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
-        Project project = new Project(0, 0, "Dick Cheney", "Building Dick Cheney clone", null, true, 1);
-        projectRepository.add(project);
+        setConnection();
+        String insstr = "SELECT * FROM projects";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+     
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                Project p = new Project(column.getInt("personnelNumber"), 0, column.getString("name"), column.getString("description"), null, null, column.getInt("projectID"));
+                projectRepository.add(p);
+                results++;
+            }
+
+            System.out.println("Fetched " + results + "projects");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }
+
+
     }
 
     public static ArrayList<Project> getProjectsByUUID(String uuid) {
         ArrayList<Project> result = new ArrayList<>();
 
         for (Project project : projectRepository) {
-            if (project.getPersonnelNumber().equals(uuid)) {
+            if (project.getPersonnelNumber() == Integer.parseInt(uuid)) {
                 result.add(project);
             }
         }

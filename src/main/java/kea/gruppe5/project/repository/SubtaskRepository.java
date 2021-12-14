@@ -26,6 +26,29 @@ public class SubtaskRepository {
         return res;
     }
 
+    public static void loadSubtasks() {
+        setConnection();
+        String insstr = "SELECT * FROM subtasks";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+     
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                Subtask subtask = new Subtask(0, column.getString("name"), column.getString("description"), column.getInt("subtaskID"), column.getInt("taskID"), false);
+                subtaskList.add(subtask);
+                results++;
+            }
+
+            System.out.println("Fetched " + results + "subtasks");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }
+
+    }
+
     public static void removeOwnedSubTasks(int taskID) {
         for (Subtask subtask : subtaskList) {
             if (taskID == subtask.getTaskId()) {
@@ -59,7 +82,7 @@ public class SubtaskRepository {
         return owned;
     }
 
-    public static int createSubtask(String name, String description, Integer taskID, double time) {
+    public static int createSubtask(String name, String description, double time, Integer taskID) {
         setConnection();
         String insstr = "INSERT INTO subtasks(name, description, taskID, time) values (?,?,?,?) ";
         PreparedStatement preparedStatement;

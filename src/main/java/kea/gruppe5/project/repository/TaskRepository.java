@@ -27,8 +27,26 @@ public class TaskRepository {
     }
 
     public static void loadTasks() {
-        taskList.add(new Task(10, "Task Name", "Task Disc", 0, 0, false));
-        taskList.add(new Task(5, "Task Name", "Task Disc", 0, 1, false));
+        setConnection();
+        String insstr = "SELECT * FROM tasks";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+    
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                Task task = new Task(0, column.getString("name"), column.getString("description") ,column.getInt("subprojectID"), column.getInt("taskID"), false);
+                taskList.add(task);
+                results++;
+            }
+
+            System.out.println("Fetched " + results + "tasks");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }
+
     }
 
     public static ArrayList<Task> getTasksByParentId(int parentId) {
