@@ -5,19 +5,13 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kea.gruppe5.project.models.Project;
-import kea.gruppe5.project.models.User;
-import kea.gruppe5.project.repository.SubprojectRepository;
-import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.service.ProjectService;
 import kea.gruppe5.project.service.SubProjectService;
 import kea.gruppe5.project.service.SubtaskService;

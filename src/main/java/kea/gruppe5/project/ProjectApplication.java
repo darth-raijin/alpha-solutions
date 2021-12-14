@@ -8,7 +8,6 @@ import kea.gruppe5.project.repository.SubprojectRepository;
 import kea.gruppe5.project.repository.SubtaskRepository;
 import kea.gruppe5.project.repository.TaskRepository;
 import kea.gruppe5.project.repository.UserRepository;
-import kea.gruppe5.project.service.ProjectService;
 
 @SpringBootApplication
 public class ProjectApplication {

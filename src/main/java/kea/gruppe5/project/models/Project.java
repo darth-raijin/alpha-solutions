@@ -38,7 +38,7 @@ public class Project {
     public int getPersonnelNumber(){
         return personnelNumber;
     }
-    public void setPersonnelNumber(){
+    public void setPersonnelNumber(int personnelNumber) {
         this.personnelNumber = personnelNumber;
     }
     

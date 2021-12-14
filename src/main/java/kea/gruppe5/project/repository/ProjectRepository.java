@@ -4,11 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Project;
-import kea.gruppe5.project.models.Subproject;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class ProjectRepository {
-    private static Connection connection = null;
 
 
     private static ArrayList<Project> projectRepository = new ArrayList<>();

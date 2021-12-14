@@ -2,7 +2,6 @@ package kea.gruppe5.project.utility;
 
 import java.io.*;
 import java.sql.*;
-import java.util.Map;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {

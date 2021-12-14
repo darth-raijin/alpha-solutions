@@ -22,7 +22,6 @@ public class Task {
         this.subProjectId = subProjectId;
         this.id = id;
         this.isCompleted = isCompleted;
-        this.projectId = projectId;
     }
 
     public Task (String name, String description, int subProjectId) {

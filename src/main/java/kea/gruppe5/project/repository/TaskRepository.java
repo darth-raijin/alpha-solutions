@@ -3,15 +3,11 @@ package kea.gruppe5.project.repository;
 import java.sql.*;
 import java.util.ArrayList;
 
-import kea.gruppe5.project.models.Project;
 import kea.gruppe5.project.models.Task;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class TaskRepository {
     static ArrayList<Task> taskList = new ArrayList<Task>();
-
-    private static Connection connection = null;
-
 
 
     public static void loadTasks() {

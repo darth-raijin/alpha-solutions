@@ -4,13 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Subtask;
-import kea.gruppe5.project.models.Task;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class SubtaskRepository {
     static ArrayList<Subtask> subtaskList = new ArrayList<Subtask>();
-
-    private static Connection connection = null;
 
 
     public static void loadSubtasks() {

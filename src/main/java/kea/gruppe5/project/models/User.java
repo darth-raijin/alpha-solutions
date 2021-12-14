@@ -1,5 +1,4 @@
 package kea.gruppe5.project.models;
-import java.util.Random;
 
 public class User {
     String fullName;

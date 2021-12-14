@@ -1,7 +1,5 @@
 package kea.gruppe5.project.service;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kea.gruppe5.project.models.Task;
 import kea.gruppe5.project.repository.TaskRepository;

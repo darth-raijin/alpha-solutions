@@ -2,14 +2,11 @@ package kea.gruppe5.project.repository;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 import kea.gruppe5.project.models.User;
-import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class UserRepository {
-    private static Connection connection = null;
 
 
     static ArrayList<User> users = new ArrayList<>();

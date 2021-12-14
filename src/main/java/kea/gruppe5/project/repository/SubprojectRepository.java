@@ -9,8 +9,6 @@ import kea.gruppe5.project.utility.DatabaseConnectionManager;
 public class SubprojectRepository {
     static ArrayList<Subproject> subprojectList = new ArrayList<Subproject>();
 
-    private static Connection connection = null;
-
 
     public static void loadSubprojects() {
         Connection connection = DatabaseConnectionManager.getConnection();
