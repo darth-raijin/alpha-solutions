@@ -31,7 +31,7 @@ public class SubtaskService {
 	}
 
     public static int createSubtask(String name, String description, double time, String id) {
-        return SubtaskRepository.createSubtask(name, description, time, id);
+        return SubtaskRepository.createSubtask(name, description, time, Integer.parseInt(id));
     }
 
     public static Subtask getSubtaskById(int parseInt) {

@@ -26,8 +26,26 @@ public class SubprojectRepository {
     }
 
     public static void loadSubprojects() {
-        Subproject test = new Subproject(0, "ahla name", "description go brr", 1, false, 0);
-        subprojectList.add(test);
+        setConnection();
+        String insstr = "SELECT * FROM subprojects";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+     
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                Subproject p = new Subproject(0, column.getString("name"), column.getString("description"), column.getInt("projectID"), false, column.getInt("subprojectID"));
+                subprojectList.add(p);
+                results++;
+            }
+
+            System.out.println("Fetched " + results + "subprojects");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }
+
 
     }
 

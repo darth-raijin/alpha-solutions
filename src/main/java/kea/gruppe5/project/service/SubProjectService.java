@@ -16,7 +16,7 @@ public class SubProjectService {
 
     public static int createSubproject(String name, String description, String id) {
         // TODO Efter oprettelse af SP, skal Id returneres for at redirect
-        int createdSub = SubprojectRepository.createSubproject(name, description, id);
+        int createdSub = SubprojectRepository.createSubproject(name, description, Integer.parseInt(id));
 
         if(createdSub >= 0) {
             System.out.println("Subproject created - ID: " + createdSub);
