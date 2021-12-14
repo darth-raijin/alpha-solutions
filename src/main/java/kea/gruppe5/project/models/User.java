@@ -27,6 +27,12 @@ public class User {
 
     }
 
+    public User(String fullName, String email, int personnelNumber) {
+        this.fullName = fullName;
+        this.email = email;
+        this.personnelNumber = personnelNumber;
+    }
+
     public String getName() {
 
         return fullName;

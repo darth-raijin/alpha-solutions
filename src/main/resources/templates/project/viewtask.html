@@ -46,7 +46,7 @@
                     <p class="subtitle is-5" id ="subtitle" th:text="${subtask.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="'updatesubtask?id=' + ${subtask.id}">
+                    <a th:href="'updatesubtask?id=' + ${subtask.getSubtaskId()}">
                         <button class="button is-info">Update</button>
                     </a>
                 </div>

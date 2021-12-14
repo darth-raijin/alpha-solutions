@@ -91,7 +91,7 @@ public class ProjectRepository {
 
     public static boolean updateProject(String name, String description, int id) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "UPDATE projects set name = ?, description = ? WHERE id = ?";
+        String insstr = "UPDATE projects set name = ?, description = ? WHERE projectID = ?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);

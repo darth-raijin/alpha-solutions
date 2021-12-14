@@ -103,7 +103,7 @@ public class TaskRepository {
 
     public static boolean updateTask(String name, String description, int taskID) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "UPDATE tasks set name = ?, description = ? WHERE id = ?";
+        String insstr = "UPDATE tasks set name = ?, description = ? WHERE taskID = ?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);

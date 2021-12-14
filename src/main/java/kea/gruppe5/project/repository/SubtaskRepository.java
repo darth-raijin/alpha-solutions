@@ -94,7 +94,8 @@ public class SubtaskRepository {
         System.out.println("Subtask created successfully");
         Subtask subtask = new Subtask(time,name,description,subtaskID,taskID, false);
         subtaskList.add(subtask);
-        return subtaskID;
+        System.out.println("Returning TASK ID " + taskID);
+        return taskID;
 
     }
     public static Subtask getSubtaskById(int parseInt) {
@@ -110,7 +111,7 @@ public class SubtaskRepository {
     public static int updateSubtask(String name, String description, double time, int id) {
         // Denne skal returnere int fordi den går til Subproject view
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "UPDATE subtasks set name = ?, description = ? WHERE id = ?";
+        String insstr = "UPDATE subtasks set name = ?, description = ? WHERE subtaskID = ?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);

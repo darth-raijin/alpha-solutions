@@ -19,10 +19,27 @@ public class UserRepository {
 
 
     public static void loadUsers() {
-        //User testUser = new User("John Doe", "test0101k", "test@vontest.com");
-        //users.add(testUser);
+        Connection connection = DatabaseConnectionManager.getConnection();
+        String insstr = "SELECT * FROM users";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+     
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                User u = new User(column.getString("name"), column.getString("email"), column.getInt("personnelNumber"));
+                users.add(u);
+                results++;
+            }
 
-        // Database load alle brugere bla bla bla
+            System.out.println("Fetched " + results + " users");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }  
+
+
     }
     public static User getUserByEmail(String email) {
         User user = new User();
@@ -101,12 +118,12 @@ public class UserRepository {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, fullName);
             preparedStatement.setString(2, email);
-            preparedStatement.setString(3, password);
-            preparedStatement.setString(4, address);
-            preparedStatement.setString(5, city);
-            preparedStatement.setString(6, postalCode);
-            preparedStatement.setString(7, phoneNumber);
-            preparedStatement.setString(8, country);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, postalCode);
+            preparedStatement.setString(5, country);
+            preparedStatement.setString(6, phoneNumber);
+            preparedStatement.setString(7, password);
+            preparedStatement.setString(8, city);
 
             preparedStatement.executeUpdate();
 

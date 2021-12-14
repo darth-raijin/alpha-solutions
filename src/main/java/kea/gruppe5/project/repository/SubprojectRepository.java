@@ -22,7 +22,7 @@ public class SubprojectRepository {
      
             ResultSet column =  preparedStatement.executeQuery();
             while(column.next()) {
-                Subproject p = new Subproject(0, column.getString("name"), column.getString("description"), column.getInt("projectID"), false, column.getInt("subprojectID"));
+                Subproject p = new Subproject(0, column.getString("name"), column.getString("description"), column.getInt("projectsID"), false, column.getInt("subprojectID"));
                 subprojectList.add(p);
                 results++;
             }
@@ -87,7 +87,7 @@ public class SubprojectRepository {
 
     public static boolean updateSubproject(String name, String description, int id) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "UPDATE subprojects set name = ?, description = ? WHERE id = ?";
+        String insstr = "UPDATE subprojects set name = ?, description = ? WHERE subprojectID = ?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
