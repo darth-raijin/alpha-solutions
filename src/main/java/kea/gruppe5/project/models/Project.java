@@ -9,6 +9,7 @@ public class Project {
     String description;
     ArrayList<User> workersList;
     Boolean isUpdated;
+    String deadline;
 
     public Project(int personnelNumber,
                    double totalTime,
@@ -24,6 +25,14 @@ public class Project {
         this.workersList = workersList;
         this.isUpdated = isUpdated;
         this.id = id;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
     public int getPersonnelNumber(){

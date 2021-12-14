@@ -24,6 +24,7 @@ public class ProjectRepository {
             ResultSet column =  preparedStatement.executeQuery();
             while(column.next()) {
                 Project p = new Project(column.getInt("personnelNumber"), 0, column.getString("name"), column.getString("description"), null, null, column.getInt("projectID"));
+                p.setDeadline(column.getString("deadline"));
                 projectRepository.add(p);
                 results++;
             }
@@ -59,9 +60,9 @@ public class ProjectRepository {
         return null;
     }
 
-    public static int createProject(String name, String description, int personnelNumber) {
+    public static int createProject(String name, String description, int personnelNumber, String deadline) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "INSERT INTO projects(name, description, personnelNumber) values (?,?,?) ";
+        String insstr = "INSERT INTO projects(name, description, personnelNumber, deadline) values (?,?,?,?)";
         PreparedStatement preparedStatement;
         int result = 0;
         try {
@@ -69,6 +70,7 @@ public class ProjectRepository {
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
             preparedStatement.setInt(3, personnelNumber);
+            preparedStatement.setString(4, deadline);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
@@ -83,21 +85,23 @@ public class ProjectRepository {
         
         System.out.println("Project created successfully");
         Project project = new Project(personnelNumber, 0, name,description, null, null, result);
+        project.setDeadline(deadline);
         projectRepository.add(project);
         return result;
 
     }
     
 
-    public static boolean updateProject(String name, String description, int id) {
+    public static boolean updateProject(String name, String description, int id, String deadline) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "UPDATE projects set name = ?, description = ? WHERE projectID = ?";
+        String insstr = "UPDATE projects set name = ?, description = ?, deadline = ? WHERE projectID = ?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
             preparedStatement.setInt(3, id);
+            preparedStatement.setString(4, deadline);
             preparedStatement.executeUpdate();
             System.out.println("Task updated in database");
         } catch (SQLException err) {
@@ -108,6 +112,7 @@ public class ProjectRepository {
             if (project.getId() == id) {
                 project.setName(name);
                 project.setDescription(description);
+                project.setDeadline(deadline);
                 System.out.println("Project successfully updated - id: " + project.getId());
                 return true;
 

@@ -24,13 +24,19 @@ public class ProjectService {
         return p;
     }
 
-    public static int createProject(String name, String description, int personnelNumber) {
+    public static int createProject(String name, String description, int personnelNumber, String deadline) {
+        String[] deadlineArray = deadline.split("-");
+        System.out.println(deadlineArray);
+        String formattedDeadline = deadlineArray[2] + "/" + deadlineArray[1]  + "/" + deadlineArray[0];
         // Forsøger at oprette projektet - hvis succesfuldt bliver Project id returnet
-        return ProjectRepository.createProject(name, description, personnelNumber);
+        return ProjectRepository.createProject(name, description, personnelNumber, formattedDeadline);
     }
 
-    public static boolean updateProject(String name, String description, int id) {
-        return ProjectRepository.updateProject(name, description, id);
+    public static boolean updateProject(String name, String description, int id, String deadline) {
+        String[] deadlineArray = deadline.split("-");
+        System.out.println(deadlineArray);
+        String formattedDeadline = deadlineArray[2] + "/" + deadlineArray[1]  + "/" + deadlineArray[0];
+        return ProjectRepository.updateProject(name, description, id, formattedDeadline);
     }
 
     public static void deleteProject(int parseInt) {

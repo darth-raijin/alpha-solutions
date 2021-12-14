@@ -74,8 +74,9 @@ public class ProjectController {
     public String updateProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+        String deadline = String.valueOf(body.get("deadline")).replace("[","").replace("]","");
 
-        boolean updated = ProjectService.updateProject(name, description, Integer.parseInt(id));
+        boolean updated = ProjectService.updateProject(name, description, Integer.parseInt(id), deadline);
         
         if (updated) {
             redirectAttrs.addAttribute("id", id);
@@ -95,11 +96,13 @@ public class ProjectController {
     public String createProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
-        System.out.println("SESSION PERS ID: " + session.getAttribute("personnelNumber"));
+        String deadline = String.valueOf(body.get("deadline")).replace("[","").replace("]","");
         int personnelNumber = (int) session.getAttribute("personnelNumber");
 
+
+
         // Hvis en model bliver returneret fra ProjectService, bliver den brugt til redirect
-        int createdProjectId = ProjectService.createProject(name, description, personnelNumber);
+        int createdProjectId = ProjectService.createProject(name, description, personnelNumber, deadline);
 
         if (createdProjectId >= 0) {
             redirectAttrs.addAttribute("id", createdProjectId);
