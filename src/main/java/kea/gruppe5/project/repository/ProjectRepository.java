@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import kea.gruppe5.project.models.Project;
+import kea.gruppe5.project.models.Subproject;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class ProjectRepository {
@@ -26,15 +27,34 @@ public class ProjectRepository {
     private static ArrayList<Project> projectRepository = new ArrayList<>();
 
     public static void loadProjects() {
-        Project project = new Project("test0101k", 0, "Dick Cheney", "Building Dick Cheney clone", null, true, 1);
-        projectRepository.add(project);
+        setConnection();
+        String insstr = "SELECT * FROM projects";
+        PreparedStatement preparedStatement;
+        int results = 0;
+        try {
+            preparedStatement = connection.prepareStatement(insstr);
+     
+            ResultSet column =  preparedStatement.executeQuery();
+            while(column.next()) {
+                Project p = new Project(column.getInt("personnelNumber"), 0, column.getString("name"), column.getString("description"), null, null, column.getInt("projectID"));
+                projectRepository.add(p);
+                results++;
+            }
+
+            System.out.println("Fetched " + results + "projects");
+
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+        }
+
+
     }
 
     public static ArrayList<Project> getProjectsByUUID(String uuid) {
         ArrayList<Project> result = new ArrayList<>();
 
         for (Project project : projectRepository) {
-            if (project.getPersonnelNumber().equals(uuid)) {
+            if (project.getPersonnelNumber() == Integer.parseInt(uuid)) {
                 result.add(project);
             }
         }
@@ -52,50 +72,51 @@ public class ProjectRepository {
         return null;
     }
 
-    public static String createProject(String name, String description) {
+    public static int createProject(String name, String description, Integer personnelNumber) {
         setConnection();
-        String insstr = "INSERT INTO projects(name, description) values (?,?) ";
+        String insstr = "INSERT INTO projects(name, description, personnelNumber) values (?,?,?) ";
         PreparedStatement preparedStatement;
-        String result = "";
+        int result = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, personnelNumber);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getString(1);
+                result = column.getInt(1);
                 System.out.println("Created column " + result);
             }
 
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
-            return "400";
+            return -1;
         }
-        System.out.println("Wishlist created successfully");
+        
+        System.out.println("Project created successfully");
+        Project project = new Project(personnelNumber, 0, name,description, null, null, result);
+        projectRepository.add(project);
         return result;
 
     }
-
-
-        System.out.println("Attempting to create project " + name + " by user " + personnelNumber);
-        // TODO OPRET FØRST I DATABASE 
-
-        // IF GUCCI OPRET I REPOSITORY
-        Project project = new Project(personnelNumber, 0, name, description, null, false, projectRepository.size() + 1);
-        System.out.println(project);
-        projectRepository.add(project);
-
-        System.out.println("Project created with id: " + project.getId());
-        return project.getId();
-
-        // IF ALSO GUCCI RETURN PROJEECT ID
-
-        // IF NOT -1
-
-    }
+    
 
     public static boolean updateProject(String name, String description, int id) {
+        setConnection();
+        String insstr = "UPDATE projects set name = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
+            preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            System.out.println("Task updated in database");
+        } catch (SQLException err) {
+            System.out.println("Something went wrong:" + err.getMessage());
+            return false;
+        }
         for (Project project : projectRepository) {
             if (project.getId() == id) {
                 project.setName(name);

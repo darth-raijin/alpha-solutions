@@ -215,6 +215,21 @@ public class ProjectController {
         return "project/updatetask";
     }
 
+    @PostMapping("updatetask")
+    public String updateTask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs,  @RequestParam(value = "id", required = true) String id) {
+        String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
+        String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
+
+        boolean updated = TaskService.updateTask(name, description, Integer.parseInt(id));
+
+        if (updated) {
+            redirectAttrs.addAttribute("id", id);
+            return "redirect:/myprojects/subproject?id={id}";
+        }
+
+        return "redirect:/myprojects/updatesubproject?status=fail";
+    }
+
         /*
             SUBTASKS
          */
