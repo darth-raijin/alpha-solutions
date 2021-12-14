@@ -8,10 +8,13 @@ import kea.gruppe5.project.models.User;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class UserRepository {
+    private static Connection connection = null;
+
 
     static ArrayList<User> users = new ArrayList<>();
 
-    private UserRepository(){}
+    private UserRepository() {
+    }
 
 
     public static void loadUsers() {
@@ -22,21 +25,36 @@ public class UserRepository {
     }
 
 
-    public static User getByEmail(String email) {
-        System.out.println("Looking for user " + email);
+    public static User getUserByEmail(String email) {
+        User user = new User();
+        Connection connection = DatabaseConnectionManager.getConnection();
+        String getStr = "SELECT name, email, address, postalcode, country, phonenumber, city, " +
+                " personnelNumber FROM alphasolutions.users WHERE email = '" + email + "'";
+        Statement statement;
 
-        for (User user : users) {
-            if (user.getEmail().equals(email)) {
-                System.out.println("Found user!");
-                return user;
+        try {
+            statement = connection.createStatement();
+
+            ResultSet values = statement.executeQuery(getStr);
+            if (values.next()) {
+                user.setName(values.getString("name"));
+                user.setEmail(values.getString("email"));
+                user.setAddress(values.getString("address"));
+                user.setPostalCode(values.getString("postalCode"));
+                user.setCountry(values.getString("country"));
+                user.setPhoneNumber(values.getString("phoneNumber"));
+                user.setCity(values.getString("city"));
+                user.setPersonnelNumber(values.getInt("personnelNumber"));
+            } else {
+                user = null;
             }
+        } catch (SQLException err) {
+            System.out.println("bad happened:" + err.getMessage());
+            return null;
+
         }
 
-        return null;
-    }
-
-    public void updateUser(User user) {
-
+        return user;
     }
 
 
@@ -44,14 +62,14 @@ public class UserRepository {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String insstr = "INSERT INTO users (" +
-                "personnelNumber, " +
                 "name, " +
                 "email, " +
                 "address, " +
                 "postalCode, " +
                 "country, " +
                 "phoneNumber, " +
-                "password)) " +
+                "password, " +
+                "city) " +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement;
         String result = "";
@@ -64,6 +82,8 @@ public class UserRepository {
             preparedStatement.setString(5, newUser.getCountry().replace("[", "").replace("]", ""));
             preparedStatement.setString(6, newUser.getPhoneNumber().replace("[", "").replace("]", ""));
             preparedStatement.setString(7, newUser.getPassword().replace("[", "").replace("]", ""));
+            preparedStatement.setString(8, newUser.getCity().replace("[", "").replace("]", ""));
+
             preparedStatement.executeUpdate();
 
             ResultSet column = preparedStatement.getGeneratedKeys();
@@ -79,7 +99,11 @@ public class UserRepository {
         }
 
 
+        //connection.close();
+
+
         //public static void createUserFromDatabase(Map<String, String> userFetch) {}
         return "200";
 
-    } }
+    }
+}

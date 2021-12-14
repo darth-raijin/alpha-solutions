@@ -13,18 +13,19 @@ public class DatabaseConnectionManager {
     private static String password = "5cac6434";
     private static Connection conn;
 
-    private DatabaseConnectionManager(){}
+    private DatabaseConnectionManager() {
+    }
 
 
-    public static Connection getConnection(){
-        if(conn != null){
+    public static Connection getConnection() {
+        if (conn != null) {
             return conn;
         }
 
-        try(InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
+        try (InputStream stream = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(stream);
-            System.out.println("Password: " + password +  " Username: " + username + " Url: " + url);
+            System.out.println("Password: " + password + " Username: " + username + " Url: " + url);
             conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected correctly!");
 
@@ -35,10 +36,35 @@ public class DatabaseConnectionManager {
     }
 
     public static Map<String, String> getUserByEmail(String email) {
+    }
+
+    public static String getPasswordByEmail(String email) {
+        Connection connection = DatabaseConnectionManager.getConnection();
+        String getStr = "SELECT password FROM alphasolutions.users WHERE email = '" + email + "'";
+        Statement statement;
+        String passwordResult = "";
+
+        try {
+            statement = connection.createStatement();
+
+            ResultSet column = statement.executeQuery(getStr);
+            if (column.next()) {
+                passwordResult = column.getString(1);
+            }
+
+        } catch (SQLException err) {
+            System.out.println("bad happened:" + err.getMessage());
+            return " ";
+
+        }
+
+        return passwordResult;
+    }
+
 
 
         return null;
-    }
+}
     public static String getUrl() {
         return url;
     }
