@@ -4,20 +4,20 @@ public class Subtask {
     double time;
     String name;
     String description;
-    int id;
+    int subtaskId;
     int taskId;
     boolean isCompleted;
 
     public Subtask(double time,
                    String name,
                    String description,
-                   int id,
+                   int subtaskId,
                    int taskId,
                    boolean isCompleted) {
         this.time = time;
         this.name = name;
         this.description = description;
-        this.id = id;
+        this.subtaskId = subtaskId;
         this.taskId = taskId;
         this.isCompleted = isCompleted;
     }
@@ -46,12 +46,12 @@ public class Subtask {
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public int getSubtaskId() {
+        return subtaskId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSubtaskId(int id) {
+        this.subtaskId = id;
     }
 
     public int getTaskId() {

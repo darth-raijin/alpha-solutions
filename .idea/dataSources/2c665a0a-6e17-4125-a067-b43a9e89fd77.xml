@@ -723,7 +723,7 @@
     <table id="228" parent="2" name="subtasks"/>
     <table id="229" parent="2" name="tasks"/>
     <table id="230" parent="2" name="users"/>
-    <column id="231" parent="224" name="projectsID">
+    <column id="231" parent="224" name="projectID">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
@@ -749,7 +749,7 @@
       <NotNull>1</NotNull>
     </column>
     <index id="236" parent="224" name="Projects_projectsID_uindex">
-      <ColNames>projectsID</ColNames>
+      <ColNames>projectID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
@@ -759,11 +759,11 @@
     </index>
     <key id="238" parent="224" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>projectsID</ColNames>
+      <ColNames>projectID</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="239" parent="224" name="Projects_projectsID_uindex">
-      <ColNames>projectsID</ColNames>
+      <ColNames>projectID</ColNames>
       <UnderlyingIndexName>Projects_projectsID_uindex</UnderlyingIndexName>
     </key>
     <foreign-key id="240" parent="224" name="Projects_users_personnelNumber_fk">
@@ -900,7 +900,7 @@ ATTRIBUTE_NAME</ColNames>
     <foreign-key id="267" parent="227" name="Subprojects_projects_projectsID_fk">
       <ColNames>projectsID</ColNames>
       <RefTableName>projects</RefTableName>
-      <RefColNames>projectsID</RefColNames>
+      <RefColNames>projectID</RefColNames>
     </foreign-key>
     <column id="268" parent="228" name="subtaskID">
       <Position>1</Position>

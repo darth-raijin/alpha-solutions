@@ -73,7 +73,6 @@ public class SubtaskRepository {
         Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO subtasks(name, description, taskID, time) values (?,?,?,?) ";
         PreparedStatement preparedStatement;
-        int result = 0;
         int subtaskID = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
@@ -84,23 +83,23 @@ public class SubtaskRepository {
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getInt("taskID");
                 subtaskID = column.getInt(1);
-                System.out.println("Created column " + result);
+                System.out.println("Created column " + subtaskID);
             }
 
         } catch (SQLException err) {
-            System.out.println("Something went wrong:" + err.getMessage());
+            System.out.println("Something went wrong creating subtask:" + err.getMessage());
             return -1;
         }
         System.out.println("Subtask created successfully");
-        Subtask subtask = new Subtask(time,name,description,subtaskID,result,false);
-        return result;
+        Subtask subtask = new Subtask(time,name,description,subtaskID,taskID, false);
+        subtaskList.add(subtask);
+        return subtaskID;
 
     }
     public static Subtask getSubtaskById(int parseInt) {
         for (Subtask subtask : subtaskList) {
-            if (subtask.getId() == parseInt) {
+            if (subtask.getSubtaskId() == parseInt) {
                 return subtask;
             }
         }
@@ -126,8 +125,8 @@ public class SubtaskRepository {
         }
         System.out.println("Incoming id: " + id);
         for (Subtask subtask : subtaskList) {
-            System.out.println("Current Subtask: " + subtask.getId());
-            if (subtask.getId() == id) {
+            System.out.println("Current Subtask: " + subtask.getSubtaskId());
+            if (subtask.getSubtaskId() == id) {
                 subtask.setDescription(description);
                 subtask.setName(name);
                 subtask.setTime(time);

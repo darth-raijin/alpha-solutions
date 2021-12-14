@@ -59,7 +59,7 @@ public class ProjectRepository {
         return null;
     }
 
-    public static int createProject(String name, String description, Integer personnelNumber) {
+    public static int createProject(String name, String description, int personnelNumber) {
         Connection connection = DatabaseConnectionManager.getConnection();
         String insstr = "INSERT INTO projects(name, description, personnelNumber) values (?,?,?) ";
         PreparedStatement preparedStatement;

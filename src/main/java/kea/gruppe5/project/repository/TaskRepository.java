@@ -65,13 +65,14 @@ public class TaskRepository {
     }
     public static int createTask(String name, String description, Integer subprojectID) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "INSERT INTO tasks(name, description, subtaskID) values (?,?,?) ";
+        String insstr = "INSERT INTO tasks(name, description, subprojectID) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name.replace("[", "").replace("]", ""));
             preparedStatement.setString(2, description.replace("[", "").replace("]", ""));
+            preparedStatement.setInt(3, subprojectID);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {

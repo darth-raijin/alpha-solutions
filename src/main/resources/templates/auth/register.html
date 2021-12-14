@@ -2,7 +2,7 @@
 <html>
     <head th:include="fragments/header :: header">
     </head>
-    <body>
+    <body onload="checkError()">
         <div th:include="fragments/navbar :: navbar"></div>
         <section class="section">
             <h1 class="title">Register</h1>
@@ -90,7 +90,14 @@
                 document.getElementById("passwordLabel").innerHTML = "Password - generated password is: 1234"
             }
 
+            function checkError() {
+                const queryParameter = new URLSearchParams(window.location.search)
 
+                if (queryParameter.has("status")) {
+                    console.log("Create failed");
+                    alert("Something went wrong. Please try again");
+                }
+            }
         </script>
     </body>
     <footer th:include="fragments/footer :: footer">

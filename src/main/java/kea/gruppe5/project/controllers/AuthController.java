@@ -64,7 +64,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam MultiValueMap body) {
+    public String register(@RequestParam MultiValueMap body, HttpSession session, RedirectAttributes redirectAttrs) {
         String fullName = String.valueOf(body.get("fullName")).replace("[", "").replace("]", "");
         String email = String.valueOf(body.get("email")).replace("[", "").replace("]", "");
         String password = String.valueOf(body.get("password")).replace("[", "").replace("]", "");
@@ -74,10 +74,20 @@ public class AuthController {
         String phoneNumber = String.valueOf(body.get("phoneNumber")).replace("[", "").replace("]", "");
         String country = String.valueOf(body.get("country")).replace("[", "").replace("]", "");
 
-        User newUser = new User(fullName, email, password, address, city, postalCode, phoneNumber, country);
-        UserRepository.addUser(newUser);
+        User user = AuthService.createUser(fullName, email, password, address, city, postalCode, phoneNumber, country);
 
-        return "redirect:/auth/login?";
+        if (user != null) {
+            // Den nuværende får sine oplysninger gemt i en session
+            session.setAttribute("personnelNumber", user.getPersonnelNumber());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("name", user.getName());
+
+            return "redirect:/";
+        }
+
+        redirectAttrs.addAttribute("status", "fail");
+        return "redirect:/auth/register?status={status}";
+
     }
 
 

@@ -36,4 +36,10 @@ public class AuthService {
         return null;
     }
 
+
+    public static User createUser(String fullName, String email, String password, String address, String city,
+                                  String postalCode, String phoneNumber, String country) {
+        return UserRepository.addUser(fullName, email, password, address, city, postalCode, phoneNumber, country);
+
+    }
 }

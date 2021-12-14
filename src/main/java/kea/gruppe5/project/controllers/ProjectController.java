@@ -95,7 +95,8 @@ public class ProjectController {
     public String createProject(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, HttpSession session) {
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
-        String personnelNumber = (String) session.getAttribute("personnelNumber");
+        //String personnelNumber = (String) session.getAttribute("personnelNumber");
+        int personnelNumber = 125;
 
         // Hvis en model bliver returneret fra ProjectService, bliver den brugt til redirect
         int createdProjectId = ProjectService.createProject(name, description, personnelNumber);
@@ -224,7 +225,7 @@ public class ProjectController {
 
         if (updated) {
             redirectAttrs.addAttribute("id", id);
-            return "redirect:/myprojects/subproject?id={id}";
+            return "project/myprojects";
         }
 
         return "redirect:/myprojects/updatesubproject?status=fail";
@@ -248,18 +249,20 @@ public class ProjectController {
     }
 
     @PostMapping("createsubtask")
-    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String id) {
+    public String createSubtask(@RequestParam MultiValueMap body, RedirectAttributes redirectAttrs, @RequestParam(value = "id", required = true) String taskId) {
         // Retrieving POST body values
         String name = String.valueOf(body.get("name")).replace("[","").replace("]","");
         String description = String.valueOf(body.get("description")).replace("[","").replace("]","");
         double time = Double.valueOf(String.valueOf(body.get("time")).replace("[","").replace("]",""));
 
         // If object is successfully created, returns value with ID - else -1
-        int creationResult = SubtaskService.createSubtask(name, description, time, id);
+        int creationResult = SubtaskService.createSubtask(name, description, time, taskId);
 
         if(creationResult >= 0) {
-            redirectAttrs.addAttribute("id", id);
+            redirectAttrs.addAttribute("id", taskId);
             return "redirect:/myprojects/tasks?id={id}";
+
+            ///myprojects/tasks?id={id}
         }
 
         return "redirect:/myprojects/tasks?status=fail";

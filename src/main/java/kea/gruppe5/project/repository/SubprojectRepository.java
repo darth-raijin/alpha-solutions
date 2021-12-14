@@ -49,7 +49,7 @@ public class SubprojectRepository {
 
     public static int createSubproject(String name, String description, Integer projectID) {
         Connection connection = DatabaseConnectionManager.getConnection();
-        String insstr = "INSERT INTO subprojects(name, description, projectID) values (?,?,?) ";
+        String insstr = "INSERT INTO subprojects(name, description, projectsID) values (?,?,?) ";
         PreparedStatement preparedStatement;
         int result = 0;
         try {

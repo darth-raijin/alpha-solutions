@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import kea.gruppe5.project.models.User;
+import kea.gruppe5.project.service.AuthService;
 import kea.gruppe5.project.utility.DatabaseConnectionManager;
 
 public class UserRepository {
@@ -80,7 +81,8 @@ public class UserRepository {
     }
 
 
-    public static String addUser(User newUser) {
+    public static User addUser(String fullName, String email, String password, String address, String city,
+                                 String postalCode, String phoneNumber, String country) {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String insstr = "INSERT INTO users (" +
@@ -94,38 +96,38 @@ public class UserRepository {
                 "city) " +
                 "values (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement;
-        String result = "";
+        int result = 0;
         try {
             preparedStatement = connection.prepareStatement(insstr, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, newUser.getName().replace("[", "").replace("]", ""));
-            preparedStatement.setString(2, newUser.getEmail().replace("[", "").replace("]", ""));
-            preparedStatement.setString(3, newUser.getAddress().replace("[", "").replace("]", ""));
-            preparedStatement.setString(4, newUser.getPostalCode().replace("[", "").replace("]", ""));
-            preparedStatement.setString(5, newUser.getCountry().replace("[", "").replace("]", ""));
-            preparedStatement.setString(6, newUser.getPhoneNumber().replace("[", "").replace("]", ""));
-            preparedStatement.setString(7, newUser.getPassword().replace("[", "").replace("]", ""));
-            preparedStatement.setString(8, newUser.getCity().replace("[", "").replace("]", ""));
+            preparedStatement.setString(1, fullName);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, address);
+            preparedStatement.setString(5, city);
+            preparedStatement.setString(6, postalCode);
+            preparedStatement.setString(7, phoneNumber);
+            preparedStatement.setString(8, country);
 
             preparedStatement.executeUpdate();
 
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {
-                result = column.getString(1);
+                result = column.getInt(1);
                 System.out.println("Created column " + result);
             }
 
         } catch (SQLException err) {
             System.out.println("bad happened:" + err.getMessage());
-            return "400";
+            return null;
 
         }
 
+        User newUser = new User(fullName, email, address, city, postalCode, phoneNumber, country);
+        newUser.setPersonnelNumber(result);
 
-        //connection.close();
+        users.add(newUser);
 
-
-        //public static void createUserFromDatabase(Map<String, String> userFetch) {}
-        return "200";
+        return newUser;
 
     }
 }
