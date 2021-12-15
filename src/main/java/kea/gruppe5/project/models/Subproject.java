@@ -1,5 +1,5 @@
 package kea.gruppe5.project.models;
-
+//IPN
 public class Subproject {
     double totalTime;
     String name;

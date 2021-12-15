@@ -1,5 +1,5 @@
 package kea.gruppe5.project;
-
+//MM
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

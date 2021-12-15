@@ -1,5 +1,5 @@
 package kea.gruppe5.project.models;
-
+//IPN
 import java.util.ArrayList;
 
 public class Project {
