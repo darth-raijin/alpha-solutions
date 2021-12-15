@@ -121,13 +121,7 @@ public class ProjectRepository {
         return false;
     }
 
-	public static void deleteProject(int parseInt) {
-        for (Project project : projectRepository) {
-            if (project.getId() == parseInt) {
-                projectRepository.remove(project);
-            }
-        }
-	}
+
 
     public static void calculateTime(int projectId, double time) {
         for (Project project : projectRepository) {

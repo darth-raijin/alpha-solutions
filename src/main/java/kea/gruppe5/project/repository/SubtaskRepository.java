@@ -33,13 +33,7 @@ public class SubtaskRepository {
 
     }
 
-    public static void removeOwnedSubTasks(int taskID) {
-        for (Subtask subtask : subtaskList) {
-            if (taskID == subtask.getTaskId()) {
-                subtaskList.remove(subtask);
-            }
-        }
-    }
+
 
 
     public static ArrayList<Subtask> getSubtasksByParent(int taskID) {

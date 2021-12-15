@@ -52,9 +52,4 @@ public class SubProjectService {
         return totalTime;
     }
 
-    public static int deleteSubProject(int subID) {
-        SubprojectRepository.deleteSubproject(subID);
-        TaskService.removeOwnedTasks(subID);
-        return SubprojectRepository.deleteSubproject(subID);
-    }
 }
