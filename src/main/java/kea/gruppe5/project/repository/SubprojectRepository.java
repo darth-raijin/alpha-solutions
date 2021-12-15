@@ -57,6 +57,7 @@ public class SubprojectRepository {
             preparedStatement.setInt(3, projectID);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
+            System.out.println(preparedStatement);
             if (column.next()) {
                 result = column.getInt(1);
                 System.out.println("Created column " + result);

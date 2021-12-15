@@ -79,6 +79,7 @@ public class SubtaskRepository {
             preparedStatement.setDouble(4, time);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
+            System.out.println(preparedStatement);
             if (column.next()) {
                 subtaskID = column.getInt(1);
                 System.out.println("Created column " + subtaskID);

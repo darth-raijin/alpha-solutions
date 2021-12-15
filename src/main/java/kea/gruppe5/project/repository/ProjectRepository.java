@@ -71,6 +71,7 @@ public class ProjectRepository {
             preparedStatement.setString(4, deadline);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
+            System.out.println(preparedStatement);
             if (column.next()) {
                 result = column.getInt(1);
                 System.out.println("Created column " + result);
@@ -102,6 +103,7 @@ public class ProjectRepository {
             preparedStatement.setString(4, deadline);
             preparedStatement.executeUpdate();
             System.out.println("Task updated in database");
+ 
         } catch (SQLException err) {
             System.out.println("Something went wrong:" + err.getMessage());
             return false;
