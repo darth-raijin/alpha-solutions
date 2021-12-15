@@ -1,5 +1,5 @@
 package kea.gruppe5.project.utility;
-
+//MM, JLJ & IPN
 import java.io.*;
 import java.sql.*;
 import java.util.Properties;
