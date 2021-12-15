@@ -33,13 +33,7 @@ public class SubtaskRepository {
 
     }
 
-    public static void removeOwnedSubTasks(int taskID) {
-        for (Subtask subtask : subtaskList) {
-            if (taskID == subtask.getTaskId()) {
-                subtaskList.remove(subtask);
-            }
-        }
-    }
+
 
 
     public static ArrayList<Subtask> getSubtasksByParent(int taskID) {
@@ -79,6 +73,7 @@ public class SubtaskRepository {
             preparedStatement.setDouble(4, time);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
+            System.out.println(preparedStatement);
             if (column.next()) {
                 subtaskID = column.getInt(1);
                 System.out.println("Created column " + subtaskID);

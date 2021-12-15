@@ -8,34 +8,49 @@ It is also possible to calculate a time estimate.
 
 Before you begin, ensure you have met the following requirements:
 * You have installed version 11 of Java 
+* Installed MySQL 8.0.25
 
 
-## Installing <project_name>
+## Installing project
 
-To install <project_name>, follow these steps:
+To install Alpha-Solutions, follow these steps:
 
 Linux and macOS:
 ```
-<install_command>
+1: Clone the repository - git clone https://github.com/macow-lab/alpha-solutions.git
+2: Open the folder in your IDE of choice
+3: Run the Spring project
+4: Visit localhost:8080
 ```
 
-Windows:
+## Hosting on Heroku
 ```
-<install_command>
+1: Fork the repository
+2: Create new App on Heroku
+3: Open the project and navigate to 'Deploy'
+4: Connect with your github
+5: Find the newly forked repository
+6: Add ClearDB as an extension
+7: Navigate to Settings for the app
+8: Reveal the config variables
+   The structure for the provided link: 
+   mysql://username:password@eu-cdbr-west-01.cleardb.com/db_name?reconnect=true
+   URL for the application.properties:
+   jdbc:mysql://eu-cdbr-west-01.cleardb.com/db_name?reconnect=true&autoReconnect=true
 ```
-## Using <project_name>
+## Using project
 
-To use <project_name>, follow these steps:
+To use Alpha-Solutions, follow these steps:
 
-```
-<usage_example>
-```
+1: Register as a user
+2: Create project
+3: Create sub elements
 
 Add run commands and examples you think users will find useful. Provide an options reference for bonus points!
 
 ## Contributing to <project_name>
 <!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file--->
-To contribute to <project_name>, follow these steps:
+To contribute to Alpha-Solutions, follow these steps:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
@@ -49,17 +64,6 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 
 Thanks to the following people who have contributed to this project:
 
-* [@scottydocs](https://github.com/scottydocs) 📖
-* [@cainwatson](https://github.com/cainwatson) 🐛
+* [@macow-lab](https://github.com/macow-lab) 😈
+* [@JensLundJoergensen](https://github.com/JensLundJoergensen)
 * [@calchuchesta](https://github.com/calchuchesta) 🐛
-
-You might want to consider using something like the [All Contributors](https://github.com/all-contributors/all-contributors) specification and its [emoji key](https://allcontributors.org/docs/en/emoji-key).
-
-## Contact
-
-If you want to contact me you can reach me at <your_email@address.com>.
-
-## License
-<!--- If you're not sure which open license to use see https://choosealicense.com/--->
-
-This project uses the following license: [<license_name>](<link>).

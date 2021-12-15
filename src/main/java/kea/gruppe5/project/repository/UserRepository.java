@@ -123,6 +123,7 @@ public class UserRepository {
             preparedStatement.setString(8, city);
 
             preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
 
             ResultSet column = preparedStatement.getGeneratedKeys();
             if (column.next()) {

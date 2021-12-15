@@ -57,6 +57,7 @@ public class SubprojectRepository {
             preparedStatement.setInt(3, projectID);
             preparedStatement.executeUpdate();
             ResultSet column = preparedStatement.getGeneratedKeys();
+            System.out.println(preparedStatement);
             if (column.next()) {
                 result = column.getInt(1);
                 System.out.println("Created column " + result);
@@ -108,16 +109,6 @@ public class SubprojectRepository {
             }
         }
         return false;
-    }
-
-    public static int deleteSubproject(int subID) {
-        for (Subproject subproject : subprojectList) {
-            if (subproject.getId() == subID) {
-                subprojectList.remove(subproject);
-                return subproject.getProjectId();
-            }
-        }
-        return -1;
     }
 
     public static void updateTime(int subProjectId, double totalTime) {

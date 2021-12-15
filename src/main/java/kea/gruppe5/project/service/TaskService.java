@@ -12,10 +12,7 @@ public class TaskService {
         return TaskRepository.getTasksByParentId(parentId);
 
     }
-    public static void removeOwnedTasks(int subID) {
-        TaskRepository.removeOwnedTasks(subID);
-        SubtaskService.removeOwnedSubTasks(subID);
-    }
+
     public static double getTotalTime(int subProjectId) {
         ArrayList<Task> tasks = TaskRepository.getTasksByParentId(subProjectId);
         double totalTime = 0;

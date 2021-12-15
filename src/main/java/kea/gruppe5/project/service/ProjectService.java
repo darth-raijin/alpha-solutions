@@ -36,11 +36,6 @@ public class ProjectService {
         return ProjectRepository.updateProject(name, description, id, formattedDeadline);
     }
 
-    public static void deleteProject(int parseInt) {
-        ProjectRepository.deleteProject(parseInt);
-        SubProjectService.deleteSubProject(parseInt);
-    }
-
     public static void calculateTime(int projectId) {
         double time = SubProjectService.getTotalTime(projectId);
         System.out.println("Subproject total time: " + time);

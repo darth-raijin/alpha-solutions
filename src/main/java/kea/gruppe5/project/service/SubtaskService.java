@@ -9,10 +9,6 @@ import java.util.ArrayList;
 public class SubtaskService {
     
 
-    public static void removeOwnedSubTasks(int subID) {
-        SubtaskRepository.removeOwnedSubTasks(subID);
-    }
-
     public static double getTotalTime(int taskID) {
         ArrayList<Subtask> owned = getSubtasksByParentId(taskID);
         double time = 0;

@@ -52,11 +52,6 @@ public class ProjectController {
         return "project/viewproject";
     }
 
-    @GetMapping("deleteproject") 
-    public String viewDeleteProject(@RequestParam(value = "id", required = true) String id) {
-        ProjectService.deleteProject(Integer.parseInt(id));
-        return "project/myprojects";
-    }
 
     @GetMapping("updateproject")
     public String viewUpdateProject(Model model, @RequestParam(value = "id", required = true) String id) {
@@ -163,16 +158,6 @@ public class ProjectController {
         return "redirect:/myprojects/updatesubproject?status=fail";
     }
 
-    @GetMapping("deletesubproject")
-    public String deleteSubProject(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) {
-        int parentId = SubProjectService.deleteSubProject(Integer.parseInt(id));
-        if (parentId >= 0) {
-            System.out.println("Subproject successfully deleted ID: " + id);
-
-        }
-        redirectAttrs.addAttribute("id", parentId);
-        return "redirect:/myprojects/projects?id={id}";
-    }
 
     /*
             TASKS
