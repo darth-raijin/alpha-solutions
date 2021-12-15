@@ -24,6 +24,7 @@ Linux and macOS:
 ```
 
 ## Hosting on Heroku
+```
 1: Fork the repository
 2: Create new App on Heroku
 3: Open the project and navigate to 'Deploy'
@@ -32,8 +33,11 @@ Linux and macOS:
 6: Add ClearDB as an extension
 7: Navigate to Settings for the app
 8: Reveal the config variables
-* The structure for the provided link: 
-
+   The structure for the provided link: 
+   mysql://username:password@eu-cdbr-west-01.cleardb.com/db_name?reconnect=true
+   URL for the application.properties:
+   jdbc:mysql://eu-cdbr-west-01.cleardb.com/db_name?reconnect=true&autoReconnect=true
+```
 ## Using project
 
 To use Alpha-Solutions, follow these steps:
