@@ -11,7 +11,7 @@
     <h1 class="title" th:text="'Update of ' + ${subtask.name} ">  </h1>
     <form method="post" action="#">
         <div class="field">
-            <label class="label" for="name"> Navn</label>
+            <label class="label" for="name"> Name</label>
             <input type="text" name="name" id="name" class="input" th:value="${subtask.name}" placeholder= "Enter subtask name" required>
         </div>
         <div class="field">
@@ -20,7 +20,7 @@
         </div>
         <div class="field">
             <label class="label" for="time"> Estimated Time</label>
-            <input type="text" name="time" id="time" class="input" th:value="${subtask.time}" placeholder= "Enter task time: Whole numbers with . delimiter" required>
+            <input type="text" name="time" id="time" class="input" th:value="${subtask.time}" placeholder= "Enter subtask time: Whole numbers with . delimiter" required>
         </div>
         
         <button class="button is-primary">Update</button>

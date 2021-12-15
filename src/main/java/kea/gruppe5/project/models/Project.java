@@ -10,6 +10,8 @@ public class Project {
     ArrayList<User> workersList;
     Boolean isUpdated;
     String deadline;
+    double hoursADay;
+    double daysLeft;
 
     public Project(int personnelNumber,
                    double totalTime,
@@ -93,6 +95,21 @@ public class Project {
     }
 
     int id;
+    public double getHoursADay() {
+        return hoursADay;
+    }
+
+    public void setHoursADay(double hoursADay) {
+        this.hoursADay = hoursADay;
+    }
+
+    public double getDaysLeft() {
+        return daysLeft;
+    }
+
+    public void setDaysLeft(double daysLeft) {
+        this.daysLeft = daysLeft;
+    }
 
 
 

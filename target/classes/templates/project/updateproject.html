@@ -11,7 +11,7 @@
     <h1 class="title" th:text="'Update of ' + ${project.name} ">  </h1>
     <form method="post" action="#">
         <div class="field">
-            <label class="label" for="name"> Navn</label>
+            <label class="label" for="name"> Name</label>
             <input type="text" name="name" id="name" class="input" th:value="${project.name}" placeholder= "Enter project name" required>
         </div>
         <div class="field">
@@ -20,7 +20,7 @@
         </div>
         <div class="field">
           <label class="label" for="deadline"> Deadline</label>
-          <input type="date" name="deadline" id="deadline" class="input"required>
+          <input type="date" name="deadline" id="deadline" class="input" th:value="${#dates.format(project.deadline,'dd/MM/yyyy')}" required>
       </div>
         <button class="button is-primary">Update</button>
         
@@ -28,7 +28,7 @@
 </main>
 <script>
     // https://flaviocopes.com/urlsearchparams/
-    // Øverstående er blevet brugt til at få fat på query parametre
+    // Ovenstående er blevet brugt til at få fat på query parametre
     function checkError() {
       const queryParameter = new URLSearchParams(window.location.search)
 

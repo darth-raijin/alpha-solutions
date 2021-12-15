@@ -6,16 +6,19 @@
       </a>
     </div>
     <div class="navbar-end" th:if="${session.name != null}">
+
+      <div class="navbar-item">
+        <a class="navbar-item" >
+          <h1 th:text="${session.name}" id="session-title"></h1>
+        </a>
+      </div>
+
       <div class="navbar-item">
         <a class="navbar-item" href="/myprojects/">
           <button class="button is-info is-rounded">My Projects</button>
         </a>
       </div>
-      <div class="navbar-item">
-        <a class="navbar-item" href="/profile">
-          <button class="button is-info is-rounded" th:text="${session.name}">Sign out</button>
-        </a>
-      </div>
+
       <div class="navbar-item">
         <a class="navbar-item" href="/auth/signout">
           <button class="button is-info is-rounded">Sign out</button>

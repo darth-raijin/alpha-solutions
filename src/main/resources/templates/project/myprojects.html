@@ -15,6 +15,7 @@
         <h1 class="title" >
 
             My Projects</h1>
+        <hr>
 
         <h2 class="subtitle">
 
@@ -38,8 +39,8 @@
                     <p class="subtitle is-5" id ="subtitle" th:text="${project.description}"> </p>
                 </div>
                 <div class="media-right">
-                    <a th:href="'projects?id=' + ${project.id}" target="_blank">
-                        <button class="button">Link</button>
+                    <a th:href="'projects?id=' + ${project.id}">
+                        <button class="button">Details</button>
                     </a>
                 </div>
             </div>

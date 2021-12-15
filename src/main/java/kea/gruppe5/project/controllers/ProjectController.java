@@ -18,6 +18,8 @@ import kea.gruppe5.project.service.SubProjectService;
 import kea.gruppe5.project.service.SubtaskService;
 import kea.gruppe5.project.service.TaskService;
 
+import java.text.ParseException;
+
 @Controller
 @RequestMapping("myprojects")
 public class ProjectController {
@@ -34,7 +36,7 @@ public class ProjectController {
     }
 
     @GetMapping("/calculateTime") 
-    public String calculateTime(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) {
+    public String calculateTime(@RequestParam(value = "id", required = true) String id, RedirectAttributes redirectAttrs) throws ParseException {
         ProjectService.calculateTime(Integer.parseInt(id));
         redirectAttrs.addAttribute("id", id);
         return "redirect:/myprojects/projects?id={id}";

@@ -123,10 +123,12 @@ public class ProjectRepository {
 
 
 
-    public static void calculateTime(int projectId, double time) {
+    public static void calculateTime(int projectId, double time, double daysLeft, double hoursADay) {
         for (Project project : projectRepository) {
             if (project.getId() == projectId) {
                 project.setTotalTime(time);
+                project.setDaysLeft(daysLeft);
+                project.setHoursADay(hoursADay);
                 System.out.println("New project time: " + project.getTotalTime());
             }
         }

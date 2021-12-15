@@ -12,6 +12,10 @@
 <div>
     <section class="section" th:each="s : ${subproject}">
 
+        <h1 class="title"> Subproject</h1>
+
+        <hr>
+
         <h1 class="title" th:text = "${s.name}">
 
             Subproject Name</h1>
@@ -47,7 +51,7 @@
                 </div>
                 <div class="media-right">
                     <a th:href="'tasks?id=' + ${task.id}">
-                        <button class="button is-info">Explore</button>
+                        <button class="button is-info">Details</button>
                     </a>
                 </div>
             </div>

@@ -12,6 +12,10 @@
 <div>
     <section class="section" th:each="p : ${project}">
 
+        <h1 class="title"> Project</h1>
+
+        <hr>
+
         <h1 class="title" th:text = "${p.name}">
 
             Project Name</h1>
@@ -21,17 +25,31 @@
             Project Description
 
         </h2>
-        <h2 class="subtitle" th:text = "'Estimated time: ' + ${p.totalTime}">
-
-            Estimated Time
-
-        </h2>
 
         <h2 class="subtitle" th:text = "'Deadline: ' + ${p.deadline}">
 
             Deadline
 
         </h2>
+
+        <h2 class="subtitle" th:text = "'Estimated time: ' + ${p.totalTime}">
+
+            Estimated Time
+
+        </h2>
+
+        <h2 class="subtitle" th:text = "'Working days left until deadline: ' + ${p.daysLeft}">
+
+            Days left until deadline
+
+        </h2>
+
+        <h2 class="subtitle" th:text = "'Hours per day: ' + ${p.hoursADay}">
+
+            Hours per day
+
+        </h2>
+
 
         <a th:href="'/myprojects/updateproject?id=' + ${p.id}">
             <button class="button is-info">Update</button>
@@ -56,10 +74,7 @@
                 </div>
                 <div class="media-right">
                     <a th:href="'subproject?id=' + ${sub.id}">
-                        <button class="button is-info">Explore</button>
-                    </a>
-                    <a th:href="'deletesubproject?id=' + ${sub.id}" onClick="return confirm('This will be lost forever! Are you sure')" target="_blank">
-                        <button class="button is-danger">Delete</button>
+                        <button class="button is-info">Details</button>
                     </a>
                 </div>
             </div>

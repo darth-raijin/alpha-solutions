@@ -11,12 +11,12 @@
     <h1 class="title" th:text="'Update of ' + ${task.name} ">  </h1>
     <form method="post" action="#">
         <div class="field">
-            <label class="label" for="name"> Navn</label>
-            <input type="text" name="name" id="name" class="input" th:value="${task.name}" placeholder= "Enter project name" required>
+            <label class="label" for="name"> Name</label>
+            <input type="text" name="name" id="name" class="input" th:value="${task.name}" placeholder= "Enter task name" required>
         </div>
         <div class="field">
             <label class="label" for="description"> Description</label>
-            <input type="text" name="description" id="description" class="input" th:value="${task.description}" placeholder= "Enter project description" required>
+            <input type="text" name="description" id="description" class="input" th:value="${task.description}" placeholder= "Enter task description" required>
         </div>
         <button class="button is-primary">Update</button>
         
