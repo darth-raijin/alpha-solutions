@@ -23,6 +23,9 @@ Linux and macOS:
 4: Visit localhost:8080
 ```
 
+## Hosting on Heroku
+1: Clone the repository
+
 ## Using project
 
 To use Alpha-Solutions, follow these steps:
