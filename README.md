@@ -24,7 +24,15 @@ Linux and macOS:
 ```
 
 ## Hosting on Heroku
-1: Clone the repository
+1: Fork the repository
+2: Create new App on Heroku
+3: Open the project and navigate to 'Deploy'
+4: Connect with your github
+5: Find the newly forked repository
+6: Add ClearDB as an extension
+7: Navigate to Settings for the app
+8: Reveal the config variables
+* The structure for the provided link: 
 
 ## Using project
 
