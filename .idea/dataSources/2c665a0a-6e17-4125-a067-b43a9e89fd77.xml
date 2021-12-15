@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="heroku_792f1fce60bf47b@eu-cdbr-west-01.cleardb.com">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.23">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.20">
     <root id="1">
       <ServerVersion>5.6.50</ServerVersion>
-      <Grants>heroku_792f1fce60bf47b|schema||b968a4f6313e7b||ALTER|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||ALTER ROUTINE|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||CREATE|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||CREATE ROUTINE|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||CREATE TEMPORARY TABLES|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||CREATE VIEW|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||DELETE|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||DROP|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||EVENT|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||EXECUTE|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||INDEX|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||INSERT|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||LOCK TABLES|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||REFERENCES|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||SELECT|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||SHOW VIEW|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||TRIGGER|G
-heroku_792f1fce60bf47b|schema||b968a4f6313e7b||UPDATE|G</Grants>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -729,7 +711,11 @@ heroku_792f1fce60bf47b|schema||b968a4f6313e7b||UPDATE|G</Grants>
     <collation id="222" parent="1" name="utf8mb4_vietnamese_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <user id="223" parent="1" name="b968a4f6313e7b"/>
+    <user id="223" parent="1" name="b968a4f6313e7b">
+      <Host>%</Host>
+      <ObjectGrants>ALL PRIVILEGES|heroku_792f1fce60bf47b
+</ObjectGrants>
+    </user>
     <table id="224" parent="2" name="projects"/>
     <table id="225" parent="2" name="spring_session"/>
     <table id="226" parent="2" name="spring_session_attributes"/>
