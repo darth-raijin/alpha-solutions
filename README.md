@@ -61,5 +61,5 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 Thanks to the following people who have contributed to this project:
 
 * [@macow-lab](https://github.com/macow-lab) 😈
-* [@cainwatson](https://github.com/cainwatson) 🐛
+* [@JensLundJoergensen](https://github.com/JensLundJoergensen)
 * [@calchuchesta](https://github.com/calchuchesta) 🐛
