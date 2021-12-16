@@ -1,6 +1,10 @@
 package kea.gruppe5.project.models;
 //IPN
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Project {
     int personnelNumber;
@@ -32,6 +36,15 @@ public class Project {
     public String getDeadline() {
         return deadline;
     }
+    public String getDeadlineHTML() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = formatter.parse(deadline);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);
+        return strDate;
+    }
+
+
 
     public void setDeadline(String deadline) {
         this.deadline = deadline;

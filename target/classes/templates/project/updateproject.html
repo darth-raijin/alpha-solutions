@@ -20,7 +20,7 @@
         </div>
         <div class="field">
           <label class="label" for="deadline"> Deadline</label>
-          <input type="date" name="deadline" id="deadline" class="input" th:value="${#dates.format(project.deadline,'dd/MM/yyyy')}" required>
+          <input type="date" name="deadline" id="deadline" class="input" th:value="${project.getDeadlineHTML}" required>
       </div>
         <button class="button is-primary">Update</button>
         
