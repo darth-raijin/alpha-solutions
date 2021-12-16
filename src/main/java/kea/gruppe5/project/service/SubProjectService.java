@@ -85,7 +85,7 @@ public class SubProjectService {
         int daysLeft = getWorkingDaysBetweenTwoDates(today, deadlineDate);
 
         for (Subproject subproject : subprojects) {
-            // First approach is taken to calculate the time
+            // A depth first approach is taken to calculate the time
             double subprojectTime = TaskService.getTotalTime(subproject.getId());
             System.out.println("Subproject ID: " + subproject.getId() + " has time: " + subprojectTime);
             totalTime += subprojectTime;
